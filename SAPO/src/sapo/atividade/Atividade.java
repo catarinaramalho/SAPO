@@ -16,18 +16,32 @@ class Atividade {
 	private String nome;
 	private String descricao;
 	private Pessoa responsavel;
-	private String estado;
+	/**
+	 * Inteiro que representa o estado de uma atividade. 0 caso a atividade esteja
+	 * aberta, 1 caso a atividade esteja encerrada (concluída), ou 2 caso a
+	 * atividade esteja desativada (abandonada ou invalidada).
+	 */
+	private int estado;
+	private Map<String, Tarefa> tarefas;
 
 	public Atividade(String id, String nome, String descricao, Pessoa responsavel) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.responsavel = responsavel;
-		this.estado = "aberta";
+		this.estado = 0;
 	}
 
 	public String getId() {
 		return this.id;
+	}
+
+	public int getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(int novoEstado) {
+		this.estado = novoEstado;
 	}
 
 	@Override
