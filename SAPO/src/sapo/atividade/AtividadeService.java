@@ -25,15 +25,27 @@ public class AtividadeService {
 	}
 
 	public void encerrarAtividade(String atividadeId) {
-		// TODO
+		Atividade atividade = this.recuperaAtividadeOuFalhe(atividadeId);
+		if (atividade.tarefasPendentes().size() != 0) {
+			throw new IllegalStateException("Não é possível encerrar atividades com tarefas pendentes");
+		}
+		atividade.setEstado(1);
 	}
 
 	public void desativarAtividade(String atividadeId) {
-		// TODO
+		Atividade atividade = this.recuperaAtividadeOuFalhe(atividadeId);
+		if (atividade.tarefasPendentes().size() != 0) {
+			throw new IllegalStateException("Não é possível desativar atividades com tarefas pendentes");
+		}
+		atividade.setEstado(2);
 	}
 
 	public void reabrirAtividade(String atividadeId) {
-		// TODO
+		Atividade atividade = this.recuperaAtividadeOuFalhe(atividadeId);
+		if (atividade.getEstado() == 0) {
+			throw new IllegalStateException("Não é possível reabrir uma atividade já aberta");
+		}
+		atividade.setEstado(0);
 	}
 
 	public String exibirAtividade(String atividadeId) {
