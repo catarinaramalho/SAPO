@@ -38,11 +38,11 @@ class Atividade {
 		this.contadorTarefas = 0;
 		this.tarefas = new HashMap<>();
 	}
-	
+
 	public String getId() {
 		return this.id;
 	}
-	
+
 	public String getNome() {
 		return this.nome;
 	}
@@ -54,6 +54,7 @@ class Atividade {
 	public void setEstado(int novoEstado) {
 		this.estado = novoEstado;
 	}
+<<<<<<< HEAD
 	
 	public void alteraNome(String id, String nome) {
 		tarefas.get(id).setNome(nome);
@@ -65,6 +66,10 @@ class Atividade {
 	
 	
 	private Set<Tarefa> tarefasPendentes() {
+=======
+
+	public Set<Tarefa> tarefasPendentes() {
+>>>>>>> c0cb130daa806edd2a5c489b50e8a93c102dadc3
 		Set<Tarefa> tarefasPendentes = new HashSet<>();
 		for (String key : this.tarefas.keySet()) {
 			if (this.tarefas.get(key).getEstado() == false) {
@@ -73,9 +78,27 @@ class Atividade {
 		}
 		return tarefasPendentes;
 	}
-	
+
+	private String listar3TarefasPendentes() {
+		int contador = 0;
+		String tarefasPendentes = "";
+		for (Tarefa tarefa : this.tarefasPendentes()) {
+			if (contador == 3) {
+				return tarefasPendentes;
+			}
+			tarefasPendentes += "\n- " + tarefa.getNome() + " - " + tarefa.getId();
+			contador++;
+		}
+		return tarefasPendentes;
+	}
+
+	private int totalTarefas() {
+		return this.tarefas.size();
+	}
+
 	/**
-	 * Método que 
+	 * Método que
+	 * 
 	 * @param nome
 	 * @param habilidades
 	 * @return
@@ -84,7 +107,7 @@ class Atividade {
 		String idPronto = this.id + "-" + this.contadorTarefas;
 		this.contadorTarefas++;
 		tarefas.put(idPronto, new Tarefa(nome, idPronto, habilidades, this.getNome()));
-		
+
 		return idPronto;
 	}
 
@@ -107,10 +130,13 @@ class Atividade {
 
 	@Override
 	public String toString() {
-		String responsavel = "";
+		String representacaoTextual = this.id + ": " + this.nome;
 		if (this.responsavel != null) {
-			responsavel = "\nResponsável: " + this.responsavel.getNome() + " – " + this.responsavel.getCpf();
+			representacaoTextual += "\nResponsável: " + this.responsavel.getNome() + " – " + this.responsavel.getCpf();
 		}
-		return this.id + ": " + this.nome + responsavel + "\n===\n" + this.descricao + "\n===\nTarefas: ";
+		representacaoTextual += "\n===\n" + this.descricao + "\n===\nTarefas: "
+				+ (this.totalTarefas() - this.tarefasPendentes().size()) + "/" + this.totalTarefas()
+				+ this.listar3TarefasPendentes();
+		return representacaoTextual;
 	}
 }
