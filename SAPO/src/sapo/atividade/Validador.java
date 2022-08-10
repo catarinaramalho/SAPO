@@ -15,6 +15,22 @@ public class Validador {
 		}
 	}
 
+	public void validacao(String nome, String[] habilidades) {
+		this.validacaoNome(nome);
+		this.validacaoHabilidades(habilidades);
+	}
+
+	private void validacaoHabilidades(String[] habilidades) {
+		for (String habilidade : habilidades) {
+			if (habilidade.isBlank()) {
+				throw new IllegalArgumentException("O id da atividade não pode ser vazio");
+			}
+			if (habilidade.isBlank()) {
+				throw new IllegalArgumentException("Não pode habilidade vaziaa!!!");
+			}
+		}
+	}
+
 	public void validacao(String nome, String descricao, String cpf) {
 		this.validacaoNome(nome);
 		this.validacaoDescricao(descricao);

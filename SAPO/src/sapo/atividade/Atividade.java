@@ -55,6 +55,15 @@ class Atividade {
 		this.estado = novoEstado;
 	}
 	
+	public void alteraNome(String id, String nome) {
+		tarefas.get(id).setNome(nome);
+	}
+	
+	public void alteraHabilidades(String id, String[] habilidades) {
+		tarefas.get(id).setHabilidades(habilidades);
+	}
+	
+	
 	private Set<Tarefa> tarefasPendentes() {
 		Set<Tarefa> tarefasPendentes = new HashSet<>();
 		for (String key : this.tarefas.keySet()) {
