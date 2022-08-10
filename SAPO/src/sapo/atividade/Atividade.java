@@ -1,8 +1,10 @@
 package sapo.atividade;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import sapo.pessoa.Pessoa;
 
@@ -51,6 +53,16 @@ class Atividade {
 
 	public void setEstado(int novoEstado) {
 		this.estado = novoEstado;
+	}
+	
+	private Set<Tarefa> tarefasPendentes() {
+		Set<Tarefa> tarefasPendentes = new HashSet<>();
+		for (String key : this.tarefas.keySet()) {
+			if (this.tarefas.get(key).getEstado() == false) {
+				tarefasPendentes.add(this.tarefas.get(key));
+			}
+		}
+		return tarefasPendentes;
 	}
 	
 	/**
