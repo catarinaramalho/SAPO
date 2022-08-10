@@ -2,6 +2,8 @@ package sapo;
 
 import sapo.atividade.AtividadeController;
 import sapo.atividade.AtividadeService;
+import sapo.atividade.TarefaController;
+import sapo.atividade.TarefaService;
 
 /**
  * 
@@ -14,13 +16,16 @@ public class Facade {
 	// private PessoaController pessoaController;
 	private AtividadeController atividadeController;
 	// … demais controllers
+	private TarefaController tarefaController;
 
 	public Facade() {
 		var atividadeService = new AtividadeService();
+		var tarefaService = new TarefaService(atividadeService);
 
 		// this.pessoaController = new PessoaController();
 		this.atividadeController = new AtividadeController(atividadeService);
 		// … demais controllers
+		this.tarefaController = new TarefaController(tarefaService);
 	}
 
 	public void cadastrarPessoa(String cpf, String nome, String[] habilidades) {
@@ -54,5 +59,9 @@ public class Facade {
 
 	public void alterarResponsavelAtividade(String atividadeId, String cpf) {
 		this.atividadeController.alterarResponsavelAtividade(atividadeId, cpf);
+	}
+
+	public String cadastrarTarefa(String id, String nome, String[] habilidades) {
+		return this.tarefaController.cadastrarTarefa(id, nome, habilidades);
 	}
 }

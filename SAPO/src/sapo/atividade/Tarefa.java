@@ -1,7 +1,7 @@
 package sapo.atividade;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import sapo.pessoa.Pessoa;
 
@@ -11,16 +11,14 @@ public class Tarefa {
 	private int duracao;
 	private String[] habilidadesRecomendadas;
 	private String nomeAtividade;
-	private List<Pessoa> pessoasAssociadas;
+	private Map<String, Pessoa> pessoasAssociadas;
 
-	public Tarefa(String nome, String codigo, int duracao, String[] habilidades, String nomeAtividade,
-			ArrayList<Pessoa> pessoas) {
+	public Tarefa(String nome, String codigo, String[] habilidades, String nomeAtividade) {
 		this.nome = nome;
 		this.codigo = codigo;
-		this.duracao = duracao;
 		this.habilidadesRecomendadas = habilidades;
 		this.nomeAtividade = nomeAtividade;
-		this.pessoasAssociadas = pessoas;
+		this.pessoasAssociadas = new HashMap<>();
 	}
 
 	public void setNome(String novoNome) {
@@ -40,8 +38,14 @@ public class Tarefa {
 	}
 	
 	public void associaPessoa(Pessoa pessoa) {
-		pessoasAssociadas.add(pessoa);
+		this.pessoasAssociadas.put(pessoa.getCpf(), pessoa);
 	}
+	
+	public void removePessoa(String cpf) {
+		this.pessoasAssociadas.remove(cpf);
+	}
+	
+	
 
 	@Override
 	public String toString() {
@@ -59,8 +63,8 @@ public class Tarefa {
 
 		retorno += "\n";
 		retorno += "(" + this.duracao + " hora(s) executada(s))\n===\nEquipe:\n";
-		for (Pessoa pessoa : this.pessoasAssociadas) {
-			retorno += pessoa.getNome() + " – " + pessoa.getCpf() + "\n";
+		for (String cpf : this.pessoasAssociadas.keySet()) {
+			retorno += this.pessoasAssociadas.get(cpf).getNome() + " – " + this.pessoasAssociadas.get(cpf).getCpf();
 		}
 
 		return retorno;

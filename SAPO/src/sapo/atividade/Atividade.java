@@ -1,5 +1,7 @@
 package sapo.atividade;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import sapo.pessoa.Pessoa;
@@ -22,6 +24,7 @@ class Atividade {
 	 * atividade esteja desativada (abandonada ou invalidada).
 	 */
 	private int estado;
+	private int contadorTarefas;
 	private Map<String, Tarefa> tarefas;
 
 	public Atividade(String id, String nome, String descricao, Pessoa responsavel) {
@@ -30,10 +33,16 @@ class Atividade {
 		this.descricao = descricao;
 		this.responsavel = responsavel;
 		this.estado = 0;
+		this.contadorTarefas = 0;
+		this.tarefas = new HashMap<>();
 	}
-
+	
 	public String getId() {
 		return this.id;
+	}
+	
+	public String getNome() {
+		return this.nome;
 	}
 
 	public int getEstado() {
@@ -42,6 +51,20 @@ class Atividade {
 
 	public void setEstado(int novoEstado) {
 		this.estado = novoEstado;
+	}
+	
+	/**
+	 * Método que 
+	 * @param nome
+	 * @param habilidades
+	 * @return
+	 */
+	public String cadastrarTarefa(String nome, String[] habilidades) {
+		String idPronto = this.id + " - " + contadorTarefas;
+		
+		tarefas.put(idPronto, new Tarefa(nome, idPronto, habilidades, this.getNome()));
+		
+		return idPronto;
 	}
 
 	@Override
