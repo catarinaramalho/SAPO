@@ -32,5 +32,27 @@ public class Facade {
 		return this.atividadeController.cadastrarAtividade(nome, descricao, cpf);
 	}
 
-	// demais métodos …
+	public void encerrarAtividade(String atividadeId) {
+		this.atividadeController.encerrarAtividade(atividadeId);
+	}
+
+	public void desativarAtividade(String atividadeId) {
+		this.atividadeController.desativarAtividade(atividadeId);
+	}
+
+	public void reabrirAtividade(String atividadeId) {
+		this.atividadeController.reabrirAtividade(atividadeId);
+	}
+
+	public String exibirAtividade(String atividadeId) {
+		return this.atividadeController.exibirAtividade(atividadeId);
+	}
+
+	public void alterarDescricaoAtividade(String atividadeId, String descricao) {
+		this.atividadeController.alterarDescricaoAtividade(atividadeId, descricao);
+	}
+
+	public void alterarResponsavelAtividade(String atividadeId, String cpf) {
+		this.atividadeController.alterarResponsavelAtividade(atividadeId, cpf);
+	}
 }

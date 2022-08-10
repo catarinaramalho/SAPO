@@ -2,6 +2,8 @@ package sapo.atividade;
 
 import java.util.Objects;
 
+import sapo.pessoa.Pessoa;
+
 /**
  * Representação de uma atividade. Uma atividade representa um conjunto de ações
  * (tarefas) que devem ser tomadas para atingir um determinado objetivo.
@@ -14,12 +16,18 @@ class Atividade {
 	private String nome;
 	private String descricao;
 	private Pessoa responsavel;
+	private String estado;
 
 	public Atividade(String id, String nome, String descricao, Pessoa responsavel) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.responsavel = responsavel;
+		this.estado = "aberta";
+	}
+
+	public String getId() {
+		return this.id;
 	}
 
 	@Override
@@ -41,7 +49,10 @@ class Atividade {
 
 	@Override
 	public String toString() {
-		return this.id + ": " + this.nome + "\nResponsável: " + this.responsavel.getNome() + " – "
-				+ this.responsavel.getCpf() + "\n===\n" + this.descricao + "\n===\n";
+		String responsavel = "";
+		if (this.responsavel != null) {
+			responsavel = "\nResponsável: " + this.responsavel.getNome() + " – " + this.responsavel.getCpf();
+		}
+		return this.id + ": " + this.nome + responsavel + "\n===\n" + this.descricao + "\n===\nTarefas: ";
 	}
 }
