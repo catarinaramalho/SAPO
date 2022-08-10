@@ -7,11 +7,11 @@ package sapo.atividade;
 public class AtividadeController {
 
 	private AtividadeService atividadeService;
-	private ValidadorAtividades validador;
+	private Validador validador;
 
 	public AtividadeController(AtividadeService atividadeService) {
 		this.atividadeService = atividadeService;
-		this.validador = new ValidadorAtividades();
+		this.validador = new Validador();
 	}
 
 	public String cadastrarAtividade(String nome, String descricao, String cpf) {
@@ -20,20 +20,23 @@ public class AtividadeController {
 	}
 
 	public void encerrarAtividade(String atividadeId) {
-		// TODO
+		this.validador.validacao(atividadeId);
+		this.atividadeService.encerrarAtividade(atividadeId);
 	}
 
 	public void desativarAtividade(String atividadeId) {
-		// TODO
+		this.validador.validacao(atividadeId);
+		this.atividadeService.desativarAtividade(atividadeId);
 	}
 
 	public void reabrirAtividade(String atividadeId) {
-		// TODO
+		this.validador.validacao(atividadeId);
+		this.atividadeService.reabrirAtividade(atividadeId);
 	}
 
 	public String exibirAtividade(String atividadeId) {
-		// TODO
-		return null;
+		this.validador.validacao(atividadeId);
+		return this.atividadeService.exibirAtividade(atividadeId);
 	}
 
 	public void alterarDescricaoAtividade(String atividadeId, String descricao) {

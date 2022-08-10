@@ -19,11 +19,11 @@ class AtividadeRepository {
 	 * String id da atividade coo chave.
 	 */
 	private Map<String, Atividade> atividades;
-	private ValidadorAtividades validador;
+	private Validador validador;
 
 	AtividadeRepository() {
 		this.atividades = new HashMap<>();
-		this.validador = new ValidadorAtividades();
+		this.validador = new Validador();
 	}
 
 	String cadastrarAtividade(String nome, String descricao, Pessoa responsavel) {
