@@ -29,4 +29,6 @@ public class ValidadorAtividades {
 			throw new IllegalArgumentException("CPF da pessoa responsável não pode ser vazio.");
 		}
 	}
+	
+	
 }

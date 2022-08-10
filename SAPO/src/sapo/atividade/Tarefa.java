@@ -1,18 +1,21 @@
 package sapo.atividade;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import sapo.pessoa.Pessoa;
 
 public class Tarefa {
 	private String nome;
 	private String codigo;
-	private int duracao;
 	private String[] habilidadesRecomendadas;
 	private String nomeAtividade;
+	private int duracao;
+	private boolean concluida;
 	private Map<String, Pessoa> pessoasAssociadas;
-
+	
 	public Tarefa(String nome, String codigo, String[] habilidades, String nomeAtividade) {
 		this.nome = nome;
 		this.codigo = codigo;
@@ -36,16 +39,48 @@ public class Tarefa {
 	public void removeHoras(int horas) {
 		this.duracao -= horas;
 	}
-	
+
 	public void associaPessoa(Pessoa pessoa) {
 		this.pessoasAssociadas.put(pessoa.getCpf(), pessoa);
 	}
-	
+
 	public void removePessoa(String cpf) {
 		this.pessoasAssociadas.remove(cpf);
 	}
+
+	public void concluiTarefa() {
+		this.concluida = true;
+	}
+
+	public boolean getEstado() {
+		return this.concluida;
+	}
+	
+	public String getId() {
+		return this.codigo;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(codigo);
+	}
 	
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tarefa other = (Tarefa) obj;
+		return Objects.equals(codigo, other.codigo);
+	}
 
 	@Override
 	public String toString() {
@@ -53,15 +88,8 @@ public class Tarefa {
 		retorno += this.nome + " - " + this.codigo + "\n";
 		retorno += "- " + this.nomeAtividade + "\n";
 
-		for (int i = 0; i < this.habilidadesRecomendadas.length; i++) {
-			if (i != (this.habilidadesRecomendadas.length - 1)) {
-				retorno += this.habilidadesRecomendadas[i] + ", ";
-			} else {
-				retorno += this.habilidadesRecomendadas[i];
-			}
-		}
+		retorno += Arrays.toString(habilidadesRecomendadas).substring(1, (Arrays.toString(habilidadesRecomendadas).length() - 1)) + "\n";
 
-		retorno += "\n";
 		retorno += "(" + this.duracao + " hora(s) executada(s))\n===\nEquipe:\n";
 		for (String cpf : this.pessoasAssociadas.keySet()) {
 			retorno += this.pessoasAssociadas.get(cpf).getNome() + " – " + this.pessoasAssociadas.get(cpf).getCpf();

@@ -60,8 +60,8 @@ class Atividade {
 	 * @return
 	 */
 	public String cadastrarTarefa(String nome, String[] habilidades) {
-		String idPronto = this.id + " - " + contadorTarefas;
-		
+		String idPronto = this.id + "-" + this.contadorTarefas;
+		this.contadorTarefas++;
 		tarefas.put(idPronto, new Tarefa(nome, idPronto, habilidades, this.getNome()));
 		
 		return idPronto;
