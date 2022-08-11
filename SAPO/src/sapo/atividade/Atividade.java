@@ -13,6 +13,7 @@ import sapo.pessoa.Pessoa;
  * (tarefas) que devem ser tomadas para atingir um determinado objetivo.
  * 
  * @author Jônatas Tavares dos Santos - 121110769
+ * @author Lucas Leones Costa Dos Santos - 121110281
  */
 class Atividade {
 
@@ -53,11 +54,8 @@ class Atividade {
 
 	public void setEstado(int novoEstado) {
 		this.estado = novoEstado;
-	}
-<<<<<<< HEAD
-	
-	
-	
+	}<<<<<<<HEAD
+
 	private Set<Tarefa> tarefasPendentes() {
 =======
 
@@ -90,11 +88,14 @@ class Atividade {
 	}
 
 	/**
-	 * Método que
+	 * Método que cadastra uma tarefa no mapa de tarefas que essa atividade possui.
+	 * Associando essa tarefa cadastrada à um código que representa a tarefa no
+	 * sistema.
 	 * 
-	 * @param nome
-	 * @param habilidades
-	 * @return
+	 * @param nome        O nome que será atribuido à tarefa na hora de seu
+	 *                    cadastro.
+	 * @param habilidades As habilidades necessárias para a realização da tarefa.
+	 * @return Retorna o id em que a tarefa foi cadastrada no sistema.
 	 */
 	public String cadastrarTarefa(String nome, String[] habilidades) {
 		String idPronto = this.id + "-" + this.contadorTarefas;
@@ -103,39 +104,114 @@ class Atividade {
 
 		return idPronto;
 	}
-	
+
+	/**
+	 * Metodo que resgata uma tarefa já cadastrada do sistema e altera o seu
+	 * atributo "nome".
+	 * 
+	 * @param id   Id de identificação da tarefa, que será usado para localiza-la no
+	 *             mapa de tarefas que a atividade possui.
+	 * @param nome Novo nome que a tarefa vai assumir.
+	 */
 	public void alteraNomeTarefa(String id, String nome) {
 		tarefas.get(id).setNome(nome);
 	}
-	
+
+	/**
+	 * Metodo que resgata uma tarefa ja cadastrada no sistema e altera o seu array
+	 * de habilidades necessárias.
+	 * 
+	 * @param id          Id de identificação da tarefa, que será usado para
+	 *                    localiza-la no mapa de tarefas que a atividade possui.
+	 * @param habilidades Novo array contendo as novas habilidades necessarias para
+	 *                    realizar a tarefa.
+	 */
 	public void alteraHabilidadesTarefa(String id, String[] habilidades) {
 		tarefas.get(id).setHabilidades(habilidades);
 	}
-	
+
+	/**
+	 * Metodo que acessa uma tarefa cadastrada no sistema e adiciona uma quatidade
+	 * de horas que foi dedicada à realização da tarefa.
+	 * 
+	 * @param id    Id de identificação da tarefa, que será usado para localiza-la
+	 *              no mapa de tarefas que a atividade possui.
+	 * @param horas Quantidade de horas em que parte da tarefa foi realizada que
+	 *              deve ser adicionada.
+	 */
 	public void adicionaHorasTarefa(String id, int horas) {
 		tarefas.get(id).acrescentarHoras(horas);
 	}
-	
+
+	/**
+	 * Metodo que acessa uma tarefa cadastrada no sistema e remove uma quatidade de
+	 * horas que foi dedicada à realização da tarefa.
+	 * 
+	 * @param id    Id de identificação da tarefa, que será usado para localiza-la
+	 *              no mapa de tarefas que a atividade possui.
+	 * @param horas Quantidade de horas em que parte da tarefa foi realizada que
+	 *              deve ser removida.
+	 */
 	public void removeHorasTarefa(String id, int horas) {
-		tarefas.get(id).removeHoras(horas);;
+		tarefas.get(id).removeHoras(horas);
+		;
 	}
-	
+
+	/**
+	 * Metodo que altera o atributo "concluida" de uma tarefa para TRUE,
+	 * simbolizando que a tarefa ja foi realizada.
+	 * 
+	 * @param id Id de identificação da tarefa, que será usado para localiza-la no
+	 *           mapa de tarefas que a atividade possui.
+	 */
 	public void concluirTarefa(String id) {
 		tarefas.get(id).concluiTarefa();
 	}
-	
+
+	/**
+	 * Metodo que acessa o mapa de tarefas da atividade e remove dele a tarefa que
+	 * corresponde ao ID passado como parametro.
+	 * 
+	 * @param id Id de identificação da tarefa, que será usado para localiza-la no
+	 *           mapa de tarefas que a atividade possui.
+	 */
 	public void removeTarefa(String id) {
 		tarefas.remove(id);
 	}
-	
+
+	/**
+	 * Metodo que acessa o mapa de tarefas que a atividade possui e devolve a
+	 * representação textual daquela tarefa.
+	 * 
+	 * @param id Id de identificação da tarefa, que será usado para localiza-la no
+	 *           mapa de tarefas que a atividade possui.
+	 * @return Retorna a representação na forma de String daquela tarefa.
+	 */
 	public String exibeTarefa(String id) {
 		return tarefas.get(id).toString();
 	}
-	
+
+	/**
+	 * Método que associa uma pessoa (responsável) à uma tarefa cadastrada na
+	 * atividade.
+	 * 
+	 * @param id     Id de identificação da tarefa, que será usado para localiza-la
+	 *               no mapa de tarefas que a atividade possui.
+	 * @param pessoa O objeto pessoa que será atribuido como responsavel pela
+	 *               realização daquela tarefa.
+	 */
 	public void associarPessoaTarefa(String id, Pessoa pessoa) {
 		tarefas.get(id).associaPessoa(pessoa);
 	}
-	
+
+	/**
+	 * Método que remove uma das pessoas que estão associadas a uma tarefa.
+	 * 
+	 * @param id     Id de identificação da tarefa, que será usado para localiza-la
+	 *               no mapa de tarefas que a atividade possui.
+	 * @param pessoa A pessoa cujo cpf sera removido do mapa de responsáveis da
+	 *               tarefa.
+	 */
 	public void removerPessoaTarefa(String id, Pessoa pessoa) {
 		tarefas.get(id).removePessoa(pessoa.getCpf());
 	}
