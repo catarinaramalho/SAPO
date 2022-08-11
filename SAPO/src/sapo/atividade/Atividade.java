@@ -56,14 +56,41 @@ class Atividade {
 	}
 <<<<<<< HEAD
 	
-	public void alteraNome(String id, String nome) {
+	public void alteraNomeTarefa(String id, String nome) {
 		tarefas.get(id).setNome(nome);
 	}
 	
-	public void alteraHabilidades(String id, String[] habilidades) {
+	public void alteraHabilidadesTarefa(String id, String[] habilidades) {
 		tarefas.get(id).setHabilidades(habilidades);
 	}
 	
+	public void adicionaHorasTarefa(String id, int horas) {
+		tarefas.get(id).acrescentarHoras(horas);
+	}
+	
+	public void removeHorasTarefa(String id, int horas) {
+		tarefas.get(id).removeHoras(horas);;
+	}
+	
+	public void concluirTarefa(String id) {
+		tarefas.get(id).concluiTarefa();
+	}
+	
+	public void removeTarefa(String id) {
+		tarefas.remove(id);
+	}
+	
+	public String exibeTarefa(String id) {
+		return tarefas.get(id).toString();
+	}
+	
+	public void associarPessoaTarefa(String id, Pessoa pessoa) {
+		tarefas.get(id).associaPessoa(pessoa);
+	}
+	
+	public void removerPessoaTarefa(String id, Pessoa pessoa) {
+		tarefas.get(id).removePessoa(pessoa.getCpf());
+	}
 	
 	private Set<Tarefa> tarefasPendentes() {
 =======
