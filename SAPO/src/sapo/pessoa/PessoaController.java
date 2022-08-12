@@ -25,18 +25,13 @@ public class PessoaController {
 	}
 
 	public void alterarHabilidades(String cpf, String[] novasHabilidades) {
-		this.validador.validacao(cpf,novasHabilidades);
+		this.validador.validacao(cpf, novasHabilidades);
 		this.pessoaService.alterarHabilidades(cpf, novasHabilidades);
 	}
 
 	public void removerPessoa(String cpf) {
 		this.validador.validacaoCpf(cpf);
 		this.pessoaService.removerPessoa(cpf);
-	}
-
-	public Pessoa recuperarPessoa(String cpf) {
-		this.validador.validacaoCpf(cpf);
-		return this.pessoaService.recuperarPessoaOuFalhe(cpf);
 	}
 
 	public void adicionarComentarioPessoa(String cpf, String comentario, String autorCpf) {

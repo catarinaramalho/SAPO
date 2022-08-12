@@ -10,8 +10,10 @@ public class Pessoa {
 	private String nome;
 	private String[] habilidades;
 	private List<Comentario> comentarios;
+	private ValidadorPessoa validador;
 
 	public Pessoa(String cpf, String nome, String[] habilidades) {
+		this.validador = new ValidadorPessoa();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.habilidades = habilidades;
@@ -29,10 +31,12 @@ public class Pessoa {
 	}
 
 	public void setNome(String nome) {
+		this.validador.validacaoNome(nome);
 		this.nome = nome;
 	}
 
 	public void setHabilidades(String[] habilidades) {
+		this.validador.validacaoHabilidades(habilidades);
 		this.habilidades = habilidades;
 	}
 
@@ -44,14 +48,17 @@ public class Pessoa {
 		return this.comentarios;
 	}
 
+	// validar comentarios
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
-	
+
+	// validar comentarios
 	public void adicionarComentario(Pessoa autor, String comentario) {
+		this.validador.validacao(cpf, comentario);
 		this.comentarios.add(new Comentario(autor, comentario));
 	}
-	
+
 	private String listarHabilidades() {
 		Arrays.sort(this.habilidades);
 		String listagemHabilidades = "";
@@ -59,9 +66,9 @@ public class Pessoa {
 			listagemHabilidades += "- " + habilidade + "\n";
 		}
 		return listagemHabilidades.trim();
-		
+
 	}
-	
+
 	public String listarComentarios() {
 		String listagemComentarios = this.toString() + "\nComentários:\n";
 		for (Comentario comentario : this.comentarios) {
@@ -91,6 +98,5 @@ public class Pessoa {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(cpf, other.cpf);
 	}
-
 
 }
