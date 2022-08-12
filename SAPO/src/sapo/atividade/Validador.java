@@ -16,7 +16,7 @@ public class Validador extends ValidadorPadrao {
 			throw new IllegalArgumentException("O id não pode ser vazio");
 		}
 	}
-	
+
 	private void validacaoDescricao(String descricao) {
 		Objects.requireNonNull(descricao, "A descrição não pode ser nula");
 		if (descricao.isBlank()) {
@@ -34,7 +34,7 @@ public class Validador extends ValidadorPadrao {
 		this.validacaoDescricao(descricao);
 		this.validacaoCpf(cpf);
 	}
-	
+
 	public void validacaoAlterarDescricaoAtividade(String atividadeId, String descricao) {
 		this.validacaoId(atividadeId);
 		this.validacaoDescricao(descricao);
