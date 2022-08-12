@@ -10,13 +10,13 @@ import sapo.ValidadorPadrao;
  */
 public class Validador extends ValidadorPadrao {
 
-	public void validacaoAtividadeId(String atividadeId) {
-		Objects.requireNonNull(atividadeId, "O id da atividade não pode ser nulo");
-		if (atividadeId.isBlank()) {
-			throw new IllegalArgumentException("O id da atividade não pode ser vazio");
+	public void validacaoId(String id) {
+		Objects.requireNonNull(id, "O id não pode ser nulo");
+		if (id.isBlank()) {
+			throw new IllegalArgumentException("O id não pode ser vazio");
 		}
 	}
-
+	
 	private void validacaoDescricao(String descricao) {
 		Objects.requireNonNull(descricao, "A descrição não pode ser nula");
 		if (descricao.isBlank()) {
@@ -36,7 +36,7 @@ public class Validador extends ValidadorPadrao {
 	}
 	
 	public void validacaoAlterarDescricaoAtividade(String atividadeId, String descricao) {
-		this.validacaoAtividadeId(atividadeId);
+		this.validacaoId(atividadeId);
 		this.validacaoDescricao(descricao);
 	}
 }

@@ -20,22 +20,22 @@ public class AtividadeController {
 	}
 
 	public void encerrarAtividade(String atividadeId) {
-		this.validador.validacaoAtividadeId(atividadeId);
+		this.validador.validacaoId(atividadeId);
 		this.atividadeService.encerrarAtividade(atividadeId);
 	}
 
 	public void desativarAtividade(String atividadeId) {
-		this.validador.validacaoAtividadeId(atividadeId);
+		this.validador.validacaoId(atividadeId);
 		this.atividadeService.desativarAtividade(atividadeId);
 	}
 
 	public void reabrirAtividade(String atividadeId) {
-		this.validador.validacaoAtividadeId(atividadeId);
+		this.validador.validacaoId(atividadeId);
 		this.atividadeService.reabrirAtividade(atividadeId);
 	}
 
 	public String exibirAtividade(String atividadeId) {
-		this.validador.validacaoAtividadeId(atividadeId);
+		this.validador.validacaoId(atividadeId);
 		return this.atividadeService.exibirAtividade(atividadeId);
 	}
 
