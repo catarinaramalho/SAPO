@@ -5,13 +5,16 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class teste {
     public static void main(String[] args) {
-    	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    	Date date = new Date();
-    	System.out.println(dateFormat.format(date));
+    	Map<String, String> pessoas = new HashMap<>();
+    	pessoas.put("1","asijijasijas");
+    	pessoas.put("1","asijijasijas");
+    	System.out.println(pessoas);
  
     }
 }
