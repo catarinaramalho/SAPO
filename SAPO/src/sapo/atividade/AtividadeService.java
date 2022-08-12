@@ -23,7 +23,7 @@ public class AtividadeService {
 	}
 
 	public String cadastrarAtividade(String nome, String descricao, String cpf) {
-		Pessoa responsavel = null; // this.pessoaService.recuperarPessoa(cpf);
+		Pessoa responsavel = this.pessoaService.recuperarPessoaOuFalhe(cpf);
 		return this.atividadeRepository.cadastrarAtividade(nome, descricao, responsavel);
 	}
 
@@ -60,7 +60,7 @@ public class AtividadeService {
 	}
 
 	public void alterarResponsavelAtividade(String atividadeId, String cpf) {
-		Pessoa responsavel = null; // this.pessoaService.recuperarPessoa(cpf);
+		Pessoa responsavel = this.pessoaService.recuperarPessoaOuFalhe(cpf);
 		this.recuperaAtividadeOuFalhe(atividadeId).setResponsavel(responsavel);
 	}
 
