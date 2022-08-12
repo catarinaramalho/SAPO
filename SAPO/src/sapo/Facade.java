@@ -6,6 +6,7 @@ import sapo.atividade.TarefaController;
 import sapo.atividade.TarefaService;
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
+import sapo.pessoa.PessoaService;
 
 /**
  * 
@@ -21,10 +22,11 @@ public class Facade {
 	// … demais controllers
 
 	public Facade() {
-		var atividadeService = new AtividadeService();
+		var pessoaService = new PessoaService();
+		var atividadeService = new AtividadeService(pessoaService);
 		var tarefaService = new TarefaService(atividadeService);
 
-		this.pessoaController = new PessoaController();
+		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
 		this.tarefaController = new TarefaController(tarefaService);
 		// … demais controllers
