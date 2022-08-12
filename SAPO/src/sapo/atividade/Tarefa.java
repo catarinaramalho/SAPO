@@ -36,19 +36,19 @@ public class Tarefa {
 		this.duracao += horas;
 	}
 
-	public void removeHoras(int horas) {
+	public void removerHoras(int horas) {
 		this.duracao -= horas;
 	}
 
-	public void associaPessoa(Pessoa pessoa) {
+	public void associarPessoa(Pessoa pessoa) {
 		this.pessoasAssociadas.put(pessoa.getCpf(), pessoa);
 	}
 
-	public void removePessoa(String cpf) {
+	public void removerPessoa(String cpf) {
 		this.pessoasAssociadas.remove(cpf);
 	}
 
-	public void concluiTarefa() {
+	public void concluirTarefa() {
 		this.concluida = true;
 	}
 

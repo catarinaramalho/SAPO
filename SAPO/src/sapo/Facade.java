@@ -6,6 +6,7 @@ import sapo.atividade.TarefaController;
 import sapo.atividade.TarefaService;
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
+import sapo.pessoa.PessoaService;
 
 /**
  * 
@@ -21,10 +22,11 @@ public class Facade {
 	// … demais controllers
 
 	public Facade() {
-		var atividadeService = new AtividadeService();
+		var pessoaService = new PessoaService();
+		var atividadeService = new AtividadeService(pessoaService);
 		var tarefaService = new TarefaService(atividadeService);
 
-		this.pessoaController = new PessoaController();
+		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
 		this.tarefaController = new TarefaController(tarefaService);
 		// … demais controllers
@@ -96,4 +98,22 @@ public class Facade {
 	public String cadastrarTarefa(String id, String nome, String[] habilidades) {
 		return this.tarefaController.cadastrarTarefa(id, nome, habilidades);
 	}
+
+	public void alterarNomeTarefa(String idTarefa, String novoNome) {
+		this.tarefaController.alterarNomeTarefa(idTarefa, novoNome);
+	}
+	
+	public void alterarHabilidadesTarefa(String idTarefa, String[] habilidades) {
+		this.tarefaController.alterarHabilidadesTarefa(idTarefa, habilidades);
+	}
+	
+	public void adicionarHorasTarefa(String idTarefa, int horas) {
+		this.tarefaController.adicionarHorasTarefa(idTarefa, horas);
+	}
+	+ removerHorasTarefa(idTarefa: str, horas: int): void
+	+ concluirTarefa(idTarefa: str): void
+	+ removerTarefa(idTarefa: str): void
+	+ exibirTarefa(idTarefa: str): str
+	+ associarPessoaTarefa(cpf: str, idTarefa: str): void
+	+ removerPessoaTarefa(cpf: str, idTarefa: str): void
 }

@@ -4,18 +4,11 @@ import java.util.Objects;
 
 public class ValidadorPadrao {
 
-	public void validacao(String nome, String[] habilidades) {
-		this.validacaoNome(nome);
-		this.validacaoHabilidades(habilidades);
-	}
-
 	public void validacaoHabilidades(String[] habilidades) {
 		for (String habilidade : habilidades) {
+			Objects.requireNonNull(habilidade, "Não pode habilidade nula!!!");
 			if (habilidade.isBlank()) {
-				throw new IllegalArgumentException("O id da atividade não pode ser vazio");
-			}
-			if (habilidade.isBlank()) {
-				throw new IllegalArgumentException("Não pode habilidade vazia!!!");
+				throw new IllegalArgumentException("Não pode habilidade vazia!");
 			}
 		}
 	}

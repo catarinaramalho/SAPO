@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import sapo.pessoa.Pessoa;
@@ -29,6 +30,7 @@ class Atividade {
 	private int estado;
 	private int contadorTarefas;
 	private Map<String, Tarefa> tarefas;
+	private Validador validador;
 
 	public Atividade(String id, String nome, String descricao, Pessoa responsavel) {
 		this.id = id;
@@ -38,6 +40,7 @@ class Atividade {
 		this.estado = 0;
 		this.contadorTarefas = 0;
 		this.tarefas = new HashMap<>();
+		this.validador = new Validador();
 	}
 
 	public String getId() {
@@ -116,31 +119,26 @@ class Atividade {
 
 		return idPronto;
 	}
-
+	
 	/**
-	 * Metodo que resgata uma tarefa já cadastrada do sistema e altera o seu
-	 * atributo "nome".
+	 * Metodo que acessa o mapa de tarefas da atividade e remove dele a tarefa que
+	 * corresponde ao ID passado como parametro.
 	 * 
-	 * @param id   Id de identificação da tarefa, que será usado para localiza-la no
-	 *             mapa de tarefas que a atividade possui.
-	 * @param nome Novo nome que a tarefa vai assumir.
+	 * @param id Id de identificação da tarefa, que será usado para localiza-la no
+	 *           mapa de tarefas que a atividade possui.
 	 */
-	public void alteraNomeTarefa(String id, String nome) {
-		tarefas.get(id).setNome(nome);
+	public void removeTarefa(String id) {
+		tarefas.remove(id);
+	}
+	
+	Optional<Tarefa> recuperarTarefa(String tarefaId) {
+		Tarefa tarefa = null;
+		this.validador.validacaoId(tarefaId);
+		tarefa = this.tarefas.get(tarefaId);
+		return Optional.ofNullable(tarefa);
 	}
 
-	/**
-	 * Metodo que resgata uma tarefa ja cadastrada no sistema e altera o seu array
-	 * de habilidades necessárias.
-	 * 
-	 * @param id          Id de identificação da tarefa, que será usado para
-	 *                    localiza-la no mapa de tarefas que a atividade possui.
-	 * @param habilidades Novo array contendo as novas habilidades necessarias para
-	 *                    realizar a tarefa.
-	 */
-	public void alteraHabilidadesTarefa(String id, String[] habilidades) {
-		tarefas.get(id).setHabilidades(habilidades);
-	}
+	
 
 	/**
 	 * Metodo que acessa uma tarefa cadastrada no sistema e adiciona uma quatidade
@@ -165,7 +163,7 @@ class Atividade {
 	 *              deve ser removida.
 	 */
 	public void removeHorasTarefa(String id, int horas) {
-		tarefas.get(id).removeHoras(horas);
+		tarefas.get(id).removerHoras(horas);
 		;
 	}
 
@@ -181,15 +179,7 @@ class Atividade {
 	}
 
 	/**
-	 * Metodo que acessa o mapa de tarefas da atividade e remove dele a tarefa que
-	 * corresponde ao ID passado como parametro.
-	 * 
-	 * @param id Id de identificação da tarefa, que será usado para localiza-la no
-	 *           mapa de tarefas que a atividade possui.
-	 */
-	public void removeTarefa(String id) {
-		tarefas.remove(id);
-	}
+	
 
 	/**
 	 * Metodo que acessa o mapa de tarefas que a atividade possui e devolve a

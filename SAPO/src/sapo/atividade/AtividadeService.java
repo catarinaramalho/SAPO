@@ -65,7 +65,7 @@ public class AtividadeService {
 	}
 
 	public Atividade recuperaAtividadeOuFalhe(String atividadeId) {
-		this.validador.validacaoAtividadeId(atividadeId);
+		this.validador.validacaoId(atividadeId);
 		Optional<Atividade> optional = this.atividadeRepository.recuperarAtividade(atividadeId);
 		if (optional.isEmpty()) {
 			throw new NoSuchElementException("A atividade com id " + atividadeId + " não existe");
