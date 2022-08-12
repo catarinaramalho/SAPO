@@ -25,5 +25,28 @@ public class TarefaController {
 	public void adicionarHorasTarefa(String idTarefa, int horas) {
 		this.tarefaService.adicionarHorasTarefa(idTarefa, horas);
 	}
+	
+	public void removeHorasTarefa(String idTarefa, int horas) {
+		this.tarefaService.removeHorasTarefa(idTarefa, horas);
+	}
 
+	public void concluirTarefa(String idTarefa) {
+		this.tarefaService.concluirTarefa(idTarefa);
+	}
+	
+	public void removerTarefa(String idTarefa) {
+		this.tarefaService.removerTarefa(idTarefa);
+	}
+	
+	public String exibirTarefa(String idTarefa) {
+		return this.tarefaService.exibirTarefa(idTarefa);
+	}
+	
+	public void associarPessoaTarefa(String cpf, String idTarefa) {
+		this.tarefaService.associarPessoaTarefa(cpf, idTarefa);
+	}
+	
+	public void removerPessoaTarefa(String cpf, String idTarefa) {
+		this.tarefaService.removerPessoaTarefa(cpf, idTarefa);
+	}
 }

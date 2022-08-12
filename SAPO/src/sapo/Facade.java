@@ -24,7 +24,7 @@ public class Facade {
 	public Facade() {
 		var pessoaService = new PessoaService();
 		var atividadeService = new AtividadeService(pessoaService);
-		var tarefaService = new TarefaService(atividadeService);
+		var tarefaService = new TarefaService(atividadeService, pessoaService);
 
 		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
@@ -110,10 +110,29 @@ public class Facade {
 	public void adicionarHorasTarefa(String idTarefa, int horas) {
 		this.tarefaController.adicionarHorasTarefa(idTarefa, horas);
 	}
-	+ removerHorasTarefa(idTarefa: str, horas: int): void
-	+ concluirTarefa(idTarefa: str): void
-	+ removerTarefa(idTarefa: str): void
-	+ exibirTarefa(idTarefa: str): str
-	+ associarPessoaTarefa(cpf: str, idTarefa: str): void
-	+ removerPessoaTarefa(cpf: str, idTarefa: str): void
+	
+	public void removerHorasTarefa(String idTarefa, int horas) {
+		this.tarefaController.removeHorasTarefa(idTarefa, horas);
+	}
+	
+	public void concluirTarefa(String idTarefa) {
+		this.tarefaController.concluirTarefa(idTarefa);
+	}
+	
+	
+	public void removerTarefa(String idTarefa) {
+		this.tarefaController.removerTarefa(idTarefa);
+	}
+	
+	public String exibirTarefa(String idTarefa) {
+		return this.tarefaController.exibirTarefa(idTarefa);
+	}
+	
+	public void associarPessoaTarefa(String cpf, String idTarefa) {
+		this.tarefaController.associarPessoaTarefa(cpf, idTarefa);
+	}
+	
+	public void removerPessoaTarefa(String cpf, String idTarefa){
+		this.tarefaController.removerPessoaTarefa(cpf, idTarefa);
+	}
 }

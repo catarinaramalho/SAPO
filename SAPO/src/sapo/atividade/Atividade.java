@@ -138,85 +138,12 @@ class Atividade {
 		return Optional.ofNullable(tarefa);
 	}
 
+
 	
 
-	/**
-	 * Metodo que acessa uma tarefa cadastrada no sistema e adiciona uma quatidade
-	 * de horas que foi dedicada à realização da tarefa.
-	 * 
-	 * @param id    Id de identificação da tarefa, que será usado para localiza-la
-	 *              no mapa de tarefas que a atividade possui.
-	 * @param horas Quantidade de horas em que parte da tarefa foi realizada que
-	 *              deve ser adicionada.
-	 */
-	public void adicionaHorasTarefa(String id, int horas) {
-		tarefas.get(id).acrescentarHoras(horas);
-	}
 
-	/**
-	 * Metodo que acessa uma tarefa cadastrada no sistema e remove uma quatidade de
-	 * horas que foi dedicada à realização da tarefa.
-	 * 
-	 * @param id    Id de identificação da tarefa, que será usado para localiza-la
-	 *              no mapa de tarefas que a atividade possui.
-	 * @param horas Quantidade de horas em que parte da tarefa foi realizada que
-	 *              deve ser removida.
-	 */
-	public void removeHorasTarefa(String id, int horas) {
-		tarefas.get(id).removerHoras(horas);
-		;
-	}
-
-	/**
-	 * Metodo que altera o atributo "concluida" de uma tarefa para TRUE,
-	 * simbolizando que a tarefa ja foi realizada.
-	 * 
-	 * @param id Id de identificação da tarefa, que será usado para localiza-la no
-	 *           mapa de tarefas que a atividade possui.
-	 */
-	public void concluirTarefa(String id) {
-		tarefas.get(id).concluiTarefa();
-	}
-
-	/**
 	
-
-	/**
-	 * Metodo que acessa o mapa de tarefas que a atividade possui e devolve a
-	 * representação textual daquela tarefa.
-	 * 
-	 * @param id Id de identificação da tarefa, que será usado para localiza-la no
-	 *           mapa de tarefas que a atividade possui.
-	 * @return Retorna a representação na forma de String daquela tarefa.
-	 */
-	public String exibeTarefa(String id) {
-		return tarefas.get(id).toString();
-	}
-
-	/**
-	 * Método que associa uma pessoa (responsável) à uma tarefa cadastrada na
-	 * atividade.
-	 * 
-	 * @param id     Id de identificação da tarefa, que será usado para localiza-la
-	 *               no mapa de tarefas que a atividade possui.
-	 * @param pessoa O objeto pessoa que será atribuido como responsavel pela
-	 *               realização daquela tarefa.
-	 */
-	public void associarPessoaTarefa(String id, Pessoa pessoa) {
-		tarefas.get(id).associaPessoa(pessoa);
-	}
-
-	/**
-	 * Método que remove uma das pessoas que estão associadas a uma tarefa.
-	 * 
-	 * @param id     Id de identificação da tarefa, que será usado para localiza-la
-	 *               no mapa de tarefas que a atividade possui.
-	 * @param pessoa A pessoa cujo cpf sera removido do mapa de responsáveis da
-	 *               tarefa.
-	 */
-	public void removerPessoaTarefa(String id, Pessoa pessoa) {
-		tarefas.get(id).removePessoa(pessoa.getCpf());
-	}
+	
 
 	@Override
 	public int hashCode() {
