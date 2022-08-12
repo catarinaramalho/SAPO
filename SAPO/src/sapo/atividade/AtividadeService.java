@@ -3,6 +3,9 @@ package sapo.atividade;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import sapo.pessoa.Pessoa;
+import sapo.pessoa.PessoaService;
+
 /**
  * 
  * @author Jônatas Tavares dos Santos - 121110769
@@ -10,18 +13,18 @@ import java.util.Optional;
 public class AtividadeService {
 
 	private AtividadeRepository atividadeRepository;
-	// private PessoaService pessoaService;
+	private PessoaService pessoaService;
 	private Validador validador;
 
-	public AtividadeService() {
+	public AtividadeService(PessoaService pessoaService) {
 		this.atividadeRepository = new AtividadeRepository();
-		// this.pessoaService = pessoaService;
+		this.pessoaService = pessoaService;
 		this.validador = new Validador();
 	}
 
 	public String cadastrarAtividade(String nome, String descricao, String cpf) {
-		// Pessoa resposavel = this.pessoaService.recuperaPessoa(cpf);
-		return this.atividadeRepository.cadastrarAtividade(nome, descricao, null);
+		Pessoa responsavel = null; // this.pessoaService.recuperarPessoa(cpf);
+		return this.atividadeRepository.cadastrarAtividade(nome, descricao, responsavel);
 	}
 
 	public void encerrarAtividade(String atividadeId) {
@@ -53,15 +56,16 @@ public class AtividadeService {
 	}
 
 	public void alterarDescricaoAtividade(String atividadeId, String descricao) {
-		// TODO
+		this.recuperaAtividadeOuFalhe(atividadeId).setDescricao(descricao);
 	}
 
 	public void alterarResponsavelAtividade(String atividadeId, String cpf) {
-		// TODO
+		Pessoa responsavel = null; // this.pessoaService.recuperarPessoa(cpf);
+		this.recuperaAtividadeOuFalhe(atividadeId).setResponsavel(responsavel);
 	}
 
 	public Atividade recuperaAtividadeOuFalhe(String atividadeId) {
-		this.validador.validacao(atividadeId);
+		this.validador.validacaoAtividadeId(atividadeId);
 		Optional<Atividade> optional = this.atividadeRepository.recuperarAtividade(atividadeId);
 		if (optional.isEmpty()) {
 			throw new NoSuchElementException("A atividade com id " + atividadeId + " não existe");

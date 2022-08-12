@@ -10,10 +10,10 @@ import sapo.pessoa.Pessoa;
 
 /**
  * Representação de uma atividade. Uma atividade representa um conjunto de ações
- * (tarefas) que devem ser tomadas para atingir um determinado objetivo.
+ * (tarefas) que devem ser tomadas para atingir um determinado objetivo. F
  * 
  * @author Jônatas Tavares dos Santos - 121110769
- * @author Lucas Leones Costa Dos Santos - 121110281
+ * @author Lucas Leones Costa dos Santos - 121110281
  */
 class Atividade {
 
@@ -52,15 +52,27 @@ class Atividade {
 		return this.estado;
 	}
 
+	public void setDescricao(String novaDescricao) {
+		this.descricao = novaDescricao;
+	}
+
+	public void setResponsavel(Pessoa novoResponsavel) {
+		this.responsavel = novoResponsavel;
+	}
+
 	public void setEstado(int novoEstado) {
 		this.estado = novoEstado;
-	}<<<<<<<HEAD
+	}
 
-	private Set<Tarefa> tarefasPendentes() {
-=======
+	public void alteraNome(String id, String nome) {
+		tarefas.get(id).setNome(nome);
+	}
+
+	public void alteraHabilidades(String id, String[] habilidades) {
+		tarefas.get(id).setHabilidades(habilidades);
+	}
 
 	public Set<Tarefa> tarefasPendentes() {
->>>>>>> c0cb130daa806edd2a5c489b50e8a93c102dadc3
 		Set<Tarefa> tarefasPendentes = new HashSet<>();
 		for (String key : this.tarefas.keySet()) {
 			if (this.tarefas.get(key).getEstado() == false) {

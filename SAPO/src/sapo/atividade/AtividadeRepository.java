@@ -55,7 +55,7 @@ class AtividadeRepository {
 
 	Optional<Atividade> recuperarAtividade(String atividadeId) {
 		Atividade atividade = null;
-		this.validador.validacao(atividadeId);
+		this.validador.validacaoAtividadeId(atividadeId);
 		atividade = this.atividades.get(atividadeId);
 		return Optional.ofNullable(atividade);
 	}

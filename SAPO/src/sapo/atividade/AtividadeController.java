@@ -20,27 +20,28 @@ public class AtividadeController {
 	}
 
 	public void encerrarAtividade(String atividadeId) {
-		this.validador.validacao(atividadeId);
+		this.validador.validacaoAtividadeId(atividadeId);
 		this.atividadeService.encerrarAtividade(atividadeId);
 	}
 
 	public void desativarAtividade(String atividadeId) {
-		this.validador.validacao(atividadeId);
+		this.validador.validacaoAtividadeId(atividadeId);
 		this.atividadeService.desativarAtividade(atividadeId);
 	}
 
 	public void reabrirAtividade(String atividadeId) {
-		this.validador.validacao(atividadeId);
+		this.validador.validacaoAtividadeId(atividadeId);
 		this.atividadeService.reabrirAtividade(atividadeId);
 	}
 
 	public String exibirAtividade(String atividadeId) {
-		this.validador.validacao(atividadeId);
+		this.validador.validacaoAtividadeId(atividadeId);
 		return this.atividadeService.exibirAtividade(atividadeId);
 	}
 
 	public void alterarDescricaoAtividade(String atividadeId, String descricao) {
-		// TODO
+		this.validador.validacaoAlterarDescricaoAtividade(atividadeId, descricao);
+		this.atividadeService.alterarDescricaoAtividade(atividadeId, descricao);
 	}
 
 	public void alterarResponsavelAtividade(String atividadeId, String cpf) {

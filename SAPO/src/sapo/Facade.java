@@ -17,8 +17,8 @@ public class Facade {
 
 	private PessoaController pessoaController;
 	private AtividadeController atividadeController;
-	// … demais controllers
 	private TarefaController tarefaController;
+	// … demais controllers
 
 	public Facade() {
 		var atividadeService = new AtividadeService();
@@ -26,13 +26,15 @@ public class Facade {
 
 		this.pessoaController = new PessoaController();
 		this.atividadeController = new AtividadeController(atividadeService);
-		// … demais controllers
 		this.tarefaController = new TarefaController(tarefaService);
+		// … demais controllers
 	}
+
 	// métodos de pessoa
 	public void cadastrarPessoa(String cpf, String nome, String[] habilidades) {
 		this.pessoaController.cadastrarPessoa(cpf, nome, habilidades);
 	}
+
 	public String exibirPessoa(String cpf) {
 		return this.pessoaController.exibirPessoa(cpf);
 	}

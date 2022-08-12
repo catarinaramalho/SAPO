@@ -3,7 +3,7 @@ package sapo;
 import java.util.Objects;
 
 public class ValidadorPadrao {
-	
+
 	public void validacao(String nome, String[] habilidades) {
 		this.validacaoNome(nome);
 		this.validacaoHabilidades(habilidades);
@@ -23,15 +23,14 @@ public class ValidadorPadrao {
 	public void validacaoNome(String nome) {
 		Objects.requireNonNull(nome, "O nome não pode ser nulo");
 		if (nome.isBlank()) {
-			throw new IllegalArgumentException("O nome não pode ser vazio.");
+			throw new IllegalArgumentException("O nome não pode ser vazio");
 		}
 	}
 
-
 	public void validacaoCpf(String cpf) {
-		Objects.requireNonNull(cpf, "O CPF da pessoa responsável não pode ser nulo");
+		Objects.requireNonNull(cpf, "O CPF não pode ser nulo");
 		if (cpf.isBlank()) {
-			throw new IllegalArgumentException("O CPF da pessoa responsável não pode ser vazio.");
+			throw new IllegalArgumentException("O CPF não pode ser vazio");
 		}
 	}
 }
