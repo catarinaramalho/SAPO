@@ -7,15 +7,18 @@ association Facade
 
 Facade
 composes PessoaController
-composes AtividadeController
+composes AtividadeController 
 composes TarefaController
+composes BuscaController
 ---
 - pessoaController: PessoaController
 - atividadeController: AtividadeController
 - tarefaController: TarefaController
+- buscaController: BuscaController
 ---
 + Facade()
 
+// Métodos de Pessoas
 + cadastrarPessoa(cpf: str, nome: str, habilidades: str[]): void
 + exibirPessoa(cpf: str): str
 + alterarNomePessoa(cpf: str, novoNome: str): void
@@ -24,7 +27,7 @@ composes TarefaController
 + adicionarComentarioPessoa(cpf: str, comentario: str, autorCpf: str): void
 + listarComentariosPessoa(cpf: str): str
 
-
+// Métodos de Atividades
 + cadastrarAtividade(nome: str, descricao: str, cpf: str): str
 + encerrarAtividade(atividadeId: str): void
 + desativarAtividade(atividadeId: str): void
@@ -33,7 +36,7 @@ composes TarefaController
 + alterarDescricaoAtividade(atividadeId: str, descricao: str): void
 + alterarResponsavelAtividade(atividadeId: str, cpf: str): void
 
-
+// Métodos de Tarefas
 + cadastrarTarefa(atividadeId: str, nome: str, habilidades: str[]): str
 + alterarNomeTarefa(idTarefa: str, novoNome: str): void
 + alterarHabilidadesTarefa(idTarefa: str, habilidades: str[]): void
@@ -44,6 +47,30 @@ composes TarefaController
 + exibirTarefa(idTarefa: str): str
 + associarPessoaTarefa(cpf: str, idTarefa: str): void
 + removerPessoaTarefa(cpf: str, idTarefa: str): void
+
+// Métodos de Buscas
++ exibirPessoas(consulta: str): str[]
++ buscarAtividade(consulta: str): str[]
++ buscarTarefas(nome: str): str[]
++ buscarTarefas(idAtividade: str, nome: str): str[]
++ sugerirTarefas(id: cpf): str[]
++ buscasMaisRecentes(nBuscas: int): str[]
++ exibirHistóricoBusca(indexBusca: int): str[]
+
+// Métodos de Funções
++ cadastrarAluno(cpf: str, nome: str, matr: str, periodo: int, habilidades: str[]): void
++ cadastrarProfessor(cpf: str, nome: str, siape: str, disciplinas: str[], habilidades: str[]): void
++ definirFuncaoProfessor(cpf: str, siape: str, disciplinas: str[]): void
++ definirFuncaoAluno(cpf: str, matr: str, periodo: int): void
++ removerFuncao(cpf: str): void
++ pegarNivel(cpf: str): int
++ listarPessoas(): str[]
+
+// Métodos de Tarefas Gerenciais
++ cadastrarTarefaGerencial(atividadeId: str, nome: str, habilidades: str[], idTarefas: str[]): str
++ adicionarNaTarefaGerencial(idTarefaGerencial: str, idTarefa: str): void
++ removerDaTarefaGerencial(idTarefaGerencial: str, idTarefa: str): void
++ contarTodasTarefasNaTarefaGerencial(idTarefaGerencial: str): int
 ---
 
 // Parte 1
@@ -142,17 +169,31 @@ composes AtividadeService
 AtividadeService
 composes AtividadeRepository
 ---
-- atividadeRespository: AtividadeRepository
+- atividadeRepository : AtividadeRepository
+- pessoaService : PessoaService
+- validador: Validador
 ---
-+ AtividadeService()
++ AtividadeService(pessoaService: PessoaService)
++ cadastrarAtividade(nome: str, descricao: str, cpf: str): str
++ encerrarAtividade(atividadeId: str): void
++ desativarAtividade(atividadeId: str): void
++ reabrirAtividade(atividadeId: str): void
++ exibirAtividade(atividadeId: str): str
++ alterarDescricaoAtividade(atividadeId: str, descricao: str): void
++ alterarResponsavelAtividade(atividadeId: str, cpf: str): void
++ recuperaAtividadeOuFalhe(atividadeId: str): Atividade
 ---
 
 AtividadeRepository
 composes Atividade
 ---
 - atividades: Map<str, Atividade>
+- validador: Validador
 ---
 + AtividadeRepository()
++ cadastrarAtividade(nome: str, descricao: str, responsavel: Pessoa): str
+- gerarId(nome: str): str
++ recuperarAtividade(atividadeId: str): Optional<Atividade>
 ---
 
 Atividade
@@ -170,6 +211,7 @@ Atividade
 TarefaController
 ---
 ---
++ TarefaController()
 + cadastrarPessoa(cpf: str, nome: str, habilidades: str[]): void
 + exibirPessoa(cpf: str): str
 + alterarNomePessoa(cpf: str, novoNome: str): void
@@ -177,4 +219,19 @@ TarefaController
 + removerPessoa(cpf: str): void
 + adicionarComentarioPessoa(cpf: str, comentario: str, autorCpf: str): void
 + listarComentariosPessoa(cpf: str): str
+---
+
+// Parte 4
+
+BuscaController
+---
+---
++ BuscaController()
++ exibirPessoas(consulta: str): str[]
++ buscarAtividade(consulta: str): str[]
++ buscarTarefas(nome: str): str[]
++ buscarTarefas(idAtividade: str, nome: str): str[]
++ sugerirTarefas(id: cpf): str[]
++ buscasMaisRecentes(nBuscas: int): str[]
++ exibirHistóricoBusca(indexBusca: int): str[]
 ---

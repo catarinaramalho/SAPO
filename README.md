@@ -10,9 +10,9 @@ Lucas Leones Costa dos Santos - 121110281
 
 ### Desenvolvimento
 
-Catarina Ramalho dos Santos - 1, 4\
-Jônatas Tavares dos Santos - 2, 6\
-Lucas Leones Costa dos Santos - 3, 5
+Catarina Ramalho dos Santos - 1, 6\
+Jônatas Tavares dos Santos - 2, 5\
+Lucas Leones Costa dos Santos - 3, 4
 
 ### Testes
 
