@@ -1,7 +1,5 @@
 package sapo.tarefa;
 
-import sapo.atividade.ValidadorAtividade;
-
 /**
  * Classe responsável por fazer validações na hora de criar uma nova tarefa e
  * pela delegação de operações envolvendo cada objeto Tarefa para a classe

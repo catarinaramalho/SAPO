@@ -39,7 +39,7 @@ public class Tarefa {
 	public void setHabilidades(String[] novasHabilidades) {
 		this.habilidadesRecomendadas = novasHabilidades;
 	}
-	
+
 	public boolean getEstado() {
 		return this.concluida;
 	}
@@ -53,28 +53,48 @@ public class Tarefa {
 	}
 
 	/**
-	 * 
+	 * Metodo que adiciona uma quantidade de horas ao atributo "duracao" dessa
+	 * tarefa.
 	 */
 	public void acrescentarHoras(int horas) {
 		this.duracao += horas;
 	}
 
+	/**
+	 * Metodo que remove uma quantidade de horas ao atributo "duracao" dessa tarefa.
+	 */
 	public void removerHoras(int horas) {
 		this.duracao -= horas;
 	}
 
+	/**
+	 * Metodo que associa uma pessoa ao mapa de pessoas resposaveis que a tarefa
+	 * possui, usando do cpf como chave para localizar a pessoa no mapa.
+	 * 
+	 * @param pessoa O objeto pessoa que será armazenado no mapa de pessoas
+	 *               responsáveis por essa tarefa.
+	 */
 	public void associarPessoa(Pessoa pessoa) {
 		this.pessoasAssociadas.put(pessoa.getCpf(), pessoa);
 	}
 
+	/**
+	 * Metodo que remove uma pessoa do mapa de pessoas resposaveis que a tarefa
+	 * possui, usando do cpf para localizar qual pessoa deve ser removida.
+	 * 
+	 * @param cpf A chave de localização no mapa que vai indicar qual pessoa deve
+	 *            ser removida.
+	 */
 	public void removerPessoa(String cpf) {
 		this.pessoasAssociadas.remove(cpf);
 	}
 
+	/**
+	 * Metodo que 
+	 */
 	public void concluirTarefa() {
 		this.concluida = true;
 	}
-
 
 	@Override
 	public int hashCode() {

@@ -4,7 +4,6 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import sapo.atividade.AtividadeService;
-import sapo.atividade.ValidadorAtividade;
 import sapo.pessoa.PessoaService;
 
 /**
