@@ -7,6 +7,14 @@ import java.util.Objects;
 
 import sapo.pessoa.Pessoa;
 
+/**
+ * Classe que representa uma tarefa no sistema, onde varias tarefas podem ser
+ * armazenada em uma atividasde e cada tarefa só pode estar associada com uma
+ * atividade.
+ * 
+ * @author Lucas Leones Costa Dos Santos - 121110281
+ *
+ */
 public class Tarefa {
 	private String nome;
 	private String codigo;
@@ -15,7 +23,7 @@ public class Tarefa {
 	private int duracao;
 	private boolean concluida;
 	private Map<String, Pessoa> pessoasAssociadas;
-	
+
 	public Tarefa(String nome, String codigo, String[] habilidades, String nomeAtividade) {
 		this.nome = nome;
 		this.codigo = codigo;
@@ -55,21 +63,20 @@ public class Tarefa {
 	public boolean getEstado() {
 		return this.concluida;
 	}
-	
+
 	public String getId() {
 		return this.codigo;
 	}
-	
+
 	public String getNome() {
 		return this.nome;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(codigo);
 	}
-	
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,7 +95,8 @@ public class Tarefa {
 		retorno += this.nome + " - " + this.codigo + "\n";
 		retorno += "- " + this.nomeAtividade + "\n";
 
-		retorno += Arrays.toString(habilidadesRecomendadas).substring(1, (Arrays.toString(habilidadesRecomendadas).length() - 1)) + "\n";
+		retorno += Arrays.toString(habilidadesRecomendadas).substring(1,
+				(Arrays.toString(habilidadesRecomendadas).length() - 1)) + "\n";
 
 		retorno += "(" + this.duracao + " hora(s) executada(s))\n===\nEquipe:\n";
 		for (String cpf : this.pessoasAssociadas.keySet()) {
