@@ -2,11 +2,11 @@ package sapo;
 
 import sapo.atividade.AtividadeController;
 import sapo.atividade.AtividadeService;
-import sapo.atividade.TarefaController;
-import sapo.atividade.TarefaService;
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
+import sapo.tarefa.TarefaController;
+import sapo.tarefa.TarefaService;
 
 /**
  * 

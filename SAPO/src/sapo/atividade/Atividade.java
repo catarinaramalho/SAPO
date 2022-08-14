@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import sapo.pessoa.Pessoa;
+import sapo.tarefa.Tarefa;
 
 /**
  * Representação de uma atividade. Uma atividade representa um conjunto de ações
@@ -16,7 +17,7 @@ import sapo.pessoa.Pessoa;
  * @author Jônatas Tavares dos Santos - 121110769
  * @author Lucas Leones Costa dos Santos - 121110281
  */
-class Atividade {
+public class Atividade {
 
 	private String id;
 	private String nome;
@@ -30,7 +31,7 @@ class Atividade {
 	private int estado;
 	private int contadorTarefas;
 	private Map<String, Tarefa> tarefas;
-	private Validador validador;
+	private ValidadorAtividade validador;
 
 	public Atividade(String id, String nome, String descricao, Pessoa responsavel) {
 		this.id = id;
@@ -40,7 +41,7 @@ class Atividade {
 		this.estado = 0;
 		this.contadorTarefas = 0;
 		this.tarefas = new HashMap<>();
-		this.validador = new Validador();
+		this.validador = new ValidadorAtividade();
 	}
 
 	public String getId() {
@@ -119,7 +120,7 @@ class Atividade {
 
 		return idPronto;
 	}
-	
+
 	/**
 	 * Metodo que acessa o mapa de tarefas da atividade e remove dele a tarefa que
 	 * corresponde ao ID passado como parametro.
@@ -130,20 +131,22 @@ class Atividade {
 	public void removeTarefa(String id) {
 		tarefas.remove(id);
 	}
-	
-	Optional<Tarefa> recuperarTarefa(String tarefaId) {
+
+	/**
+	 * FALTA DOCUMENTAR MAS EU NAO SEI OQ DIZER
+	 * 
+	 * @param tarefaId Id de identificação da tarefa, que será usado para
+	 *                 localiza-la no mapa de tarefas que a atividade possui.
+	 * @return Retorna um Optional, que caso possua uma tarefa cadastrada com o id
+	 *         passado irá conter uma tarefa, caso contrario, o optional retornara
+	 *         sem atividade e uma excessão será lançada.
+	 */
+	public Optional<Tarefa> recuperarTarefa(String tarefaId) {
 		Tarefa tarefa = null;
 		this.validador.validacaoId(tarefaId);
 		tarefa = this.tarefas.get(tarefaId);
 		return Optional.ofNullable(tarefa);
 	}
-
-
-	
-
-
-	
-	
 
 	@Override
 	public int hashCode() {

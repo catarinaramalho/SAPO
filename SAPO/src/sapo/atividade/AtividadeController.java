@@ -17,7 +17,7 @@ public class AtividadeController {
 	 * Validador a ser utilizado pelo controller para validar os parâmetros
 	 * recebidos.
 	 */
-	private Validador validador;
+	private ValidadorAtividade validador;
 
 	/**
 	 * Contrutor padrão do controller. Recebe uma AtividadeService como parâmetro e
@@ -28,7 +28,7 @@ public class AtividadeController {
 	 */
 	public AtividadeController(AtividadeService atividadeService) {
 		this.atividadeService = atividadeService;
-		this.validador = new Validador();
+		this.validador = new ValidadorAtividade();
 	}
 
 	/**

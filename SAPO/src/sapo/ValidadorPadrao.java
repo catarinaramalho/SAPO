@@ -26,4 +26,11 @@ public class ValidadorPadrao {
 			throw new IllegalArgumentException("O CPF não pode ser vazio");
 		}
 	}
+	
+	public void validacaoId(String id) {
+		Objects.requireNonNull(id, "O id não pode ser nulo");
+		if (id.isBlank()) {
+			throw new IllegalArgumentException("O id não pode ser vazio");
+		}
+	}
 }

@@ -14,12 +14,12 @@ public class AtividadeService {
 
 	private AtividadeRepository atividadeRepository;
 	private PessoaService pessoaService;
-	private Validador validador;
+	private ValidadorAtividade validador;
 
 	public AtividadeService(PessoaService pessoaService) {
 		this.atividadeRepository = new AtividadeRepository();
 		this.pessoaService = pessoaService;
-		this.validador = new Validador();
+		this.validador = new ValidadorAtividade();
 	}
 
 	public String cadastrarAtividade(String nome, String descricao, String cpf) {

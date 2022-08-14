@@ -1,4 +1,4 @@
-package sapo.atividade;
+package sapo.tarefa;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,7 +39,22 @@ public class Tarefa {
 	public void setHabilidades(String[] novasHabilidades) {
 		this.habilidadesRecomendadas = novasHabilidades;
 	}
+	
+	public boolean getEstado() {
+		return this.concluida;
+	}
 
+	public String getId() {
+		return this.codigo;
+	}
+
+	public String getNome() {
+		return this.nome;
+	}
+
+	/**
+	 * 
+	 */
 	public void acrescentarHoras(int horas) {
 		this.duracao += horas;
 	}
@@ -60,17 +75,6 @@ public class Tarefa {
 		this.concluida = true;
 	}
 
-	public boolean getEstado() {
-		return this.concluida;
-	}
-
-	public String getId() {
-		return this.codigo;
-	}
-
-	public String getNome() {
-		return this.nome;
-	}
 
 	@Override
 	public int hashCode() {
