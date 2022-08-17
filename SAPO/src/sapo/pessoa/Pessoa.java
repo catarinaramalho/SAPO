@@ -76,6 +76,15 @@ public class Pessoa {
 		}
 		return listagemComentarios.trim();
 	}
+	
+	public boolean possuiHabilidade(String criterio) {
+		for(String habilidade : this.habilidades) {
+			if (habilidade.equals(criterio)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public String toString() {

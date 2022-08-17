@@ -1,6 +1,9 @@
 package sapo.pessoa;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -40,7 +43,7 @@ class PessoaRepository {
 		pessoa = this.pessoas.get(cpf);
 		return Optional.ofNullable(pessoa);
 	}
-
+	
 	Boolean existeCpf(String cpf) {
 		this.validador.validacaoCpf(cpf);
 		for (String cpfCadastrado : this.pessoas.keySet()) {
@@ -50,6 +53,30 @@ class PessoaRepository {
 		}
 		return false;
 
+	}
+	
+	public List<Pessoa> busca(String criterioBusca) {
+		List<Pessoa> resultadosBusca = new ArrayList<>();
+		
+		for (String chave : this.pessoas.keySet()) {
+			if(chave.equals(criterioBusca)) {
+				resultadosBusca.add(this.pessoas.get(chave));
+				continue;
+			}
+			
+			if(chave.equals(this.pessoas.get(chave).getNome())) {
+				resultadosBusca.add(this.pessoas.get(chave));
+				continue;
+			}
+			
+			if(this.pessoas.get(chave).possuiHabilidade(criterioBusca)) {
+				resultadosBusca.add(this.pessoas.get(chave));
+				continue;
+			}
+			
+		}
+		
+		return resultadosBusca;
 	}
 
 }
