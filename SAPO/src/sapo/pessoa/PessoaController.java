@@ -13,6 +13,11 @@ public class PessoaController {
 		this.validador.validacao(cpf, nome, habilidades);
 		this.pessoaService.cadastrarPessoa(cpf, nome, habilidades);
 	}
+	
+	public Pessoa recuperarPessoa(String cpf) {
+		this.validador.validacaoCpf(cpf);
+		return this.pessoaService.recuperarPessoaOuFalhe(cpf);
+	}
 
 	public String exibirPessoa(String cpf) {
 		this.validador.validacaoCpf(cpf);
