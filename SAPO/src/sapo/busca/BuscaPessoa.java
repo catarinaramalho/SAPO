@@ -17,4 +17,7 @@ public class BuscaPessoa {
 		
 	}
 	
+	public Pessoa[] busca() {
+		
+	}
 }

@@ -5,6 +5,7 @@ import java.util.Objects;
 public class ValidadorPadrao {
 
 	public void validacaoHabilidades(String[] habilidades) {
+		Objects.requireNonNull(habilidades, "Habilidades não pode ser nulo!!!");
 		for (String habilidade : habilidades) {
 			Objects.requireNonNull(habilidade, "Não pode habilidade nula!!!");
 			if (habilidade.isBlank()) {

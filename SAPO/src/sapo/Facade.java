@@ -2,6 +2,8 @@ package sapo;
 
 import sapo.atividade.AtividadeController;
 import sapo.atividade.AtividadeService;
+import sapo.busca.BuscaController;
+import sapo.busca.BuscaService;
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
@@ -19,16 +21,19 @@ public class Facade {
 	private PessoaController pessoaController;
 	private AtividadeController atividadeController;
 	private TarefaController tarefaController;
+	private BuscaController buscaController;
 	// … demais controllers
 
 	public Facade() {
 		var pessoaService = new PessoaService();
 		var atividadeService = new AtividadeService(pessoaService);
 		var tarefaService = new TarefaService(atividadeService, pessoaService);
+		var buscaService = new BuscaService(pessoaService);
 
 		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
 		this.tarefaController = new TarefaController(tarefaService);
+		this.buscaController = new BuscaController(buscaService);
 		// … demais controllers
 	}
 
@@ -134,5 +139,9 @@ public class Facade {
 	
 	public void removerPessoaTarefa(String cpf, String idTarefa){
 		this.tarefaController.removerPessoaTarefa(cpf, idTarefa);
+	}
+	
+	public String[] buscaPessoa(String criterioBusca) {
+		return this.buscaController.busca(criterioBusca);
 	}
 }

@@ -1,5 +1,6 @@
 package sapo.pessoa;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -56,6 +57,10 @@ public class PessoaService {
 		this.validador.validacaoCpf(cpf);
 		return this.recuperarPessoaOuFalhe(cpf).listarComentarios();
 
+	}
+	
+	public List<Pessoa> busca(String criterioBusca) {
+		return this.pessoaRepository.busca(criterioBusca);
 	}
 
 }

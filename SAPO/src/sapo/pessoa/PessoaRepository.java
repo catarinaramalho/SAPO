@@ -2,10 +2,12 @@ package sapo.pessoa;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 class PessoaRepository {
 	private Map<String, Pessoa> pessoas;
@@ -55,8 +57,8 @@ class PessoaRepository {
 
 	}
 	
-	public List<Pessoa> busca(String criterioBusca) {
-		List<Pessoa> resultadosBusca = new ArrayList<>();
+	public Set<Pessoa> busca(String criterioBusca) {
+		Set<Pessoa> resultadosBusca = new HashSet<>();
 		
 		for (String chave : this.pessoas.keySet()) {
 			if(chave.equals(criterioBusca)) {
