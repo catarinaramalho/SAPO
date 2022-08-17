@@ -5,19 +5,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import sapo.funcao.Funcao;
+
 public class Pessoa {
 	private String cpf;
 	private String nome;
 	private String[] habilidades;
+	private Funcao funcao;
 	private List<Comentario> comentarios;
 	private ValidadorPessoa validador;
 
 	public Pessoa(String cpf, String nome, String[] habilidades) {
-		this.validador = new ValidadorPessoa();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.habilidades = habilidades;
+		this.funcao = null;
 		this.comentarios = new ArrayList<>();
+		this.validador = new ValidadorPessoa();
 
 	}
 
@@ -76,9 +80,9 @@ public class Pessoa {
 		}
 		return listagemComentarios.trim();
 	}
-	
+
 	public boolean possuiHabilidade(String criterio) {
-		for(String habilidade : this.habilidades) {
+		for (String habilidade : this.habilidades) {
 			if (habilidade.equals(criterio)) {
 				return true;
 			}
@@ -88,7 +92,12 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return this.nome + " - " + this.cpf + "\n" + this.listarHabilidades();
+		String toString = this.nome + " - " + this.cpf + "\n";
+		if (funcao != null) {
+			toString += this.funcao.toString() + "\n";
+		}
+		toString += this.listarHabilidades();
+		return toString;
 	}
 
 	@Override
@@ -107,5 +116,4 @@ public class Pessoa {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(cpf, other.cpf);
 	}
-
 }

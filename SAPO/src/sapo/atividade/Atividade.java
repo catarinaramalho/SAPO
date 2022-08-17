@@ -9,6 +9,7 @@ import java.util.Set;
 
 import sapo.pessoa.Pessoa;
 import sapo.tarefa.Tarefa;
+import sapo.tarefa.TarefaGerencial;
 
 /**
  * Representação de uma atividade. Uma atividade representa um conjunto de ações
@@ -117,6 +118,14 @@ public class Atividade {
 		String idPronto = this.id + "-" + this.contadorTarefas;
 		this.contadorTarefas++;
 		tarefas.put(idPronto, new Tarefa(nome, idPronto, habilidades, this.getNome()));
+
+		return idPronto;
+	}
+	
+	public String cadastrarTarefaGerencial(String nome2, String[] habilidades, String[] idTarefas) {
+		String idPronto = this.id + "-" + this.contadorTarefas;
+		this.contadorTarefas++;
+		tarefas.put(idPronto, new TarefaGerencial(nome, idPronto, habilidades, this.getNome(), idTarefas));
 
 		return idPronto;
 	}

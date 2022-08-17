@@ -2,8 +2,13 @@ package sapo;
 
 import sapo.atividade.AtividadeController;
 import sapo.atividade.AtividadeService;
+<<<<<<< HEAD
 import sapo.busca.BuscaController;
 import sapo.busca.BuscaService;
+=======
+import sapo.funcao.FuncaoController;
+import sapo.funcao.FuncaoService;
+>>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
@@ -21,7 +26,12 @@ public class Facade {
 	private PessoaController pessoaController;
 	private AtividadeController atividadeController;
 	private TarefaController tarefaController;
+<<<<<<< HEAD
 	private BuscaController buscaController;
+=======
+
+	private FuncaoController funcaoController;
+>>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 	// … demais controllers
 
 	public Facade() {
@@ -30,10 +40,17 @@ public class Facade {
 		var tarefaService = new TarefaService(atividadeService, pessoaService);
 		var buscaService = new BuscaService(pessoaService);
 
+		var funcaoService = new FuncaoService(pessoaService);
+
 		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
 		this.tarefaController = new TarefaController(tarefaService);
+<<<<<<< HEAD
 		this.buscaController = new BuscaController(buscaService);
+=======
+
+		this.funcaoController = new FuncaoController(funcaoService);
+>>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 		// … demais controllers
 	}
 
@@ -100,6 +117,7 @@ public class Facade {
 		this.atividadeController.alterarResponsavelAtividade(atividadeId, cpf);
 	}
 
+	// métodos de tarefa
 	public String cadastrarTarefa(String id, String nome, String[] habilidades) {
 		return this.tarefaController.cadastrarTarefa(id, nome, habilidades);
 	}
@@ -107,41 +125,75 @@ public class Facade {
 	public void alterarNomeTarefa(String idTarefa, String novoNome) {
 		this.tarefaController.alterarNomeTarefa(idTarefa, novoNome);
 	}
-	
+
 	public void alterarHabilidadesTarefa(String idTarefa, String[] habilidades) {
 		this.tarefaController.alterarHabilidadesTarefa(idTarefa, habilidades);
 	}
-	
+
 	public void adicionarHorasTarefa(String idTarefa, int horas) {
 		this.tarefaController.adicionarHorasTarefa(idTarefa, horas);
 	}
-	
+
 	public void removerHorasTarefa(String idTarefa, int horas) {
 		this.tarefaController.removeHorasTarefa(idTarefa, horas);
 	}
-	
+
 	public void concluirTarefa(String idTarefa) {
 		this.tarefaController.concluirTarefa(idTarefa);
 	}
-	
-	
+
 	public void removerTarefa(String idTarefa) {
 		this.tarefaController.removerTarefa(idTarefa);
 	}
-	
+
 	public String exibirTarefa(String idTarefa) {
 		return this.tarefaController.exibirTarefa(idTarefa);
 	}
-	
+
 	public void associarPessoaTarefa(String cpf, String idTarefa) {
 		this.tarefaController.associarPessoaTarefa(cpf, idTarefa);
 	}
-	
-	public void removerPessoaTarefa(String cpf, String idTarefa){
+
+	public void removerPessoaTarefa(String cpf, String idTarefa) {
 		this.tarefaController.removerPessoaTarefa(cpf, idTarefa);
 	}
+<<<<<<< HEAD
 	
 	public String[] buscaPessoa(String criterioBusca) {
 		return this.buscaController.busca(criterioBusca);
 	}
 }
+=======
+
+	// métodos de busca
+
+	// métodos de função
+	public void cadastrarAluno(String cpf, String nome, String matr, int periodo, String[] habilidades) {
+		this.funcaoController.cadastrarAluno(cpf, nome, matr, periodo, habilidades);
+	}
+
+	public void cadastrarProfessor(String cpf, String nome, String siape, String[] disciplinas, String[] habilidades) {
+		this.funcaoController.cadastrarProfessor(cpf, nome, siape, disciplinas, habilidades);
+	}
+
+	public void definirFuncaoProfessor(String cpf, String siape, String[] disciplinas) {
+		this.funcaoController.definirFuncaoProfessor(cpf, siape, disciplinas);
+	}
+
+	public void definirFuncaoAluno(String cpf, String matr, int periodo) {
+		this.funcaoController.definirFuncaoAluno(cpf, matr, periodo);
+	}
+
+	public void removerFuncao(String cpf) {
+		this.funcaoController.removerFuncao(cpf);
+	}
+
+	public int pegarNivel(String cpf) {
+		return this.funcaoController.pegarNivel(cpf);
+	}
+
+	public String[] listarPessoas() {
+		return this.funcaoController.listarPessoas();
+	}
+}
+>>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
