@@ -3,6 +3,7 @@ package sapo.pessoa;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 public class PessoaService {
 
@@ -59,7 +60,7 @@ public class PessoaService {
 
 	}
 	
-	public List<Pessoa> busca(String criterioBusca) {
+	public Set<Pessoa> busca(String criterioBusca) {
 		return this.pessoaRepository.busca(criterioBusca);
 	}
 
