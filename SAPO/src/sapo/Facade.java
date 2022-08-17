@@ -1,14 +1,13 @@
 package sapo;
 
+import java.util.List;
+
 import sapo.atividade.AtividadeController;
 import sapo.atividade.AtividadeService;
-<<<<<<< HEAD
 import sapo.busca.BuscaController;
 import sapo.busca.BuscaService;
-=======
 import sapo.funcao.FuncaoController;
 import sapo.funcao.FuncaoService;
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
@@ -26,12 +25,8 @@ public class Facade {
 	private PessoaController pessoaController;
 	private AtividadeController atividadeController;
 	private TarefaController tarefaController;
-<<<<<<< HEAD
 	private BuscaController buscaController;
-=======
-
 	private FuncaoController funcaoController;
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 	// … demais controllers
 
 	public Facade() {
@@ -45,12 +40,8 @@ public class Facade {
 		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
 		this.tarefaController = new TarefaController(tarefaService);
-<<<<<<< HEAD
 		this.buscaController = new BuscaController(buscaService);
-=======
-
 		this.funcaoController = new FuncaoController(funcaoService);
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 		// … demais controllers
 	}
 
@@ -157,15 +148,12 @@ public class Facade {
 	public void removerPessoaTarefa(String cpf, String idTarefa) {
 		this.tarefaController.removerPessoaTarefa(cpf, idTarefa);
 	}
-<<<<<<< HEAD
-	
-	public String[] buscaPessoa(String criterioBusca) {
-		return this.buscaController.busca(criterioBusca);
-	}
-}
-=======
 
 	// métodos de busca
+	
+	public List<Pessoa> buscaPessoa(String criterioBusca) {
+		return this.buscaController.buscaPessoa(criterioBusca);
+	}
 
 	// métodos de função
 	public void cadastrarAluno(String cpf, String nome, String matr, int periodo, String[] habilidades) {
@@ -196,4 +184,3 @@ public class Facade {
 		return this.funcaoController.listarPessoas();
 	}
 }
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55

@@ -1,5 +1,9 @@
 package sapo.busca;
 
+import java.util.List;
+
+import sapo.pessoa.Pessoa;
+
 public class BuscaController {
 	
 	private BuscaService buscaService;
@@ -8,7 +12,9 @@ public class BuscaController {
 		this.buscaService = buscaService;
 	}
 	
-	public String[] busca(String criterioBusca) {
-		return this.buscaService.busca(criterioBusca);
+	public List<Pessoa> buscaPessoa(String criterioBusca) {
+		//VALIDACAO CRITERIO
+		return this.buscaService.busca(new BuscaPessoa(criterioBusca));
 	}
+	
 }

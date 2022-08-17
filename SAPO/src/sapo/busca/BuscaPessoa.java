@@ -1,23 +1,28 @@
 package sapo.busca;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaService;
 
-public class BuscaPessoa {
-	private PessoaService pessoaService;
-	private List<Pessoa> resultadosBusca;
+public class BuscaPessoa extends BuscaAbstract {
 	
+
 	public BuscaPessoa(String criterioBusca) {
-		this.pessoaService = new PessoaService();
-		this.resultadosBusca = new ArrayList<>();
-		
-		
+		super(criterioBusca);
 	}
-	
-	public Pessoa[] busca() {
-		
+
+	@Override
+	public Set<Pessoa> busca(PessoaService pessoaService) {
+		Set<Pessoa> retorno = new HashSet<>();
+
+		for (String criterio : super.getCriterio()) {
+			for (Pessoa pessoaCorrespondente : pessoaService.busca(criterio)) {
+				retorno.add(pessoaCorrespondente);
+			}
+		}
+		return retorno;
 	}
+
 }
