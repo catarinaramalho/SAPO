@@ -11,21 +11,23 @@ public class Pessoa {
 	private String cpf;
 	private String nome;
 	private String[] habilidades;
-	private Funcao funcao;
 	private List<Comentario> comentarios;
+	private Funcao funcao;
 	private ValidadorPessoa validador;
 
 	public Pessoa(String cpf, String nome, String[] habilidades) {
+		this(cpf, nome, habilidades, null);
+	}
+
+	public Pessoa(String cpf, String nome, String[] habilidades, Funcao funcao) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.habilidades = habilidades;
-		this.funcao = null;
 		this.comentarios = new ArrayList<>();
+		this.funcao = funcao;
 		this.validador = new ValidadorPessoa();
-
 	}
 
-	// getters e setters de todos e depois ver o que tirar;
 	public String getCpf() {
 		return this.cpf;
 	}
@@ -39,17 +41,25 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
+	public String[] getHabilidades() {
+		return this.habilidades;
+	}
+
 	public void setHabilidades(String[] habilidades) {
 		this.validador.validacaoHabilidades(habilidades);
 		this.habilidades = habilidades;
 	}
 
-	public String[] getHabilidades() {
-		return this.habilidades;
-	}
-
 	public List<Comentario> getComentarios() {
 		return this.comentarios;
+	}
+
+	public Funcao getFuncao() {
+		return this.funcao;
+	}
+
+	public void setFuncao(Funcao novaFuncao) {
+		this.funcao = novaFuncao;
 	}
 
 	// validar comentarios

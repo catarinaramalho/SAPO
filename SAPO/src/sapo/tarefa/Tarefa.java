@@ -16,13 +16,13 @@ import sapo.pessoa.Pessoa;
  *
  */
 public class Tarefa {
-	private String nome;
-	private String codigo;
-	private String[] habilidadesRecomendadas;
-	private String nomeAtividade;
-	private int duracao;
-	private boolean concluida;
-	private Map<String, Pessoa> pessoasAssociadas;
+	protected String nome;
+	protected String codigo;
+	protected String[] habilidadesRecomendadas;
+	protected String nomeAtividade;
+	protected int duracao;
+	protected boolean concluida;
+	protected Map<String, Pessoa> pessoasAssociadas;
 
 	public Tarefa(String nome, String codigo, String[] habilidades, String nomeAtividade) {
 		this.nome = nome;
@@ -51,6 +51,11 @@ public class Tarefa {
 	public String getNome() {
 		return this.nome;
 	}
+	
+	public String getCodigo() {
+		return this.codigo;
+	}
+
 
 	/**
 	 * Metodo que adiciona uma quantidade de horas ao atributo "duracao" dessa
@@ -130,4 +135,5 @@ public class Tarefa {
 		return retorno;
 
 	}
+
 }

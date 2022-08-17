@@ -1,9 +1,10 @@
 package sapo.pessoa;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
+
+import sapo.funcao.Funcao;
 
 public class PessoaService {
 
@@ -18,6 +19,11 @@ public class PessoaService {
 	public void cadastrarPessoa(String cpf, String nome, String[] habilidades) {
 		this.validador.validacao(cpf, nome, habilidades);
 		this.pessoaRepository.cadastrarPessoa(cpf, nome, habilidades);
+	}
+
+	public void cadastrarPessoa(String cpf, String nome, String[] habilidades, Funcao funcao) {
+		this.validador.validacao(cpf, nome, habilidades);
+		this.pessoaRepository.cadastrarPessoa(cpf, nome, habilidades, funcao);
 	}
 
 	public String exibirPessoa(String cpf) {
@@ -59,7 +65,7 @@ public class PessoaService {
 		return this.recuperarPessoaOuFalhe(cpf).listarComentarios();
 
 	}
-	
+
 	public Set<Pessoa> busca(String criterioBusca) {
 		return this.pessoaRepository.busca(criterioBusca);
 	}

@@ -1,8 +1,10 @@
 package sapo.atividade;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -117,15 +119,23 @@ public class Atividade {
 	public String cadastrarTarefa(String nome, String[] habilidades) {
 		String idPronto = this.id + "-" + this.contadorTarefas;
 		this.contadorTarefas++;
-		tarefas.put(idPronto, new Tarefa(nome, idPronto, habilidades, this.getNome()));
+		this.tarefas.put(idPronto, new Tarefa(nome, idPronto, habilidades, this.getNome()));
 
 		return idPronto;
 	}
-	
+
 	public String cadastrarTarefaGerencial(String nome2, String[] habilidades, String[] idTarefas) {
 		String idPronto = this.id + "-" + this.contadorTarefas;
 		this.contadorTarefas++;
-		tarefas.put(idPronto, new TarefaGerencial(nome, idPronto, habilidades, this.getNome(), idTarefas));
+		ArrayList<Tarefa> tarefasDeTarefaGerencial = new ArrayList<Tarefa>();
+		for (String idTarefa : idTarefas) {
+			if (this.recuperarTarefa(idTarefa).isEmpty()) {
+				throw new NoSuchElementException("A tarefa com id " + idTarefa + " não existe");
+			} else {
+				tarefasDeTarefaGerencial.add(this.recuperarTarefa(idTarefa).get());
+			}
+		}
+		this.tarefas.put(idPronto, new TarefaGerencial(nome, idPronto, habilidades, this.getNome(),tarefasDeTarefaGerencial));
 
 		return idPronto;
 	}
@@ -138,7 +148,7 @@ public class Atividade {
 	 *           mapa de tarefas que a atividade possui.
 	 */
 	public void removeTarefa(String id) {
-		tarefas.remove(id);
+		this.tarefas.remove(id);
 	}
 
 	/**

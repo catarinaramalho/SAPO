@@ -8,7 +8,10 @@ import sapo.busca.BuscaController;
 import sapo.busca.BuscaService;
 import sapo.funcao.FuncaoController;
 import sapo.funcao.FuncaoService;
+<<<<<<< HEAD
 import sapo.pessoa.Pessoa;
+=======
+>>>>>>> b652e87ed0d78634646dd4707c9e1185372208a8
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
 import sapo.tarefa.TarefaController;
@@ -58,16 +61,12 @@ public class Facade {
 		this.pessoaController.alterarNomePessoa(cpf, novoNome);
 	}
 
-	public void alterarHabilidades(String cpf, String[] novasHabilidades) {
+	public void alterarHabilidadesPessoa(String cpf, String[] novasHabilidades) {
 		this.pessoaController.alterarHabilidades(cpf, novasHabilidades);
 	}
 
 	public void removerPessoa(String cpf) {
 		this.pessoaController.removerPessoa(cpf);
-	}
-
-	public Pessoa recuperarPessoa(String cpf) {
-		return this.pessoaController.recuperarPessoa(cpf);
 	}
 
 	public void adicionarComentarioPessoa(String cpf, String comentario, String autorCpf) {
@@ -76,7 +75,6 @@ public class Facade {
 
 	public String listarComentariosPessoa(String cpf) {
 		return this.pessoaController.listarComentariosPessoa(cpf);
-
 	}
 
 	// métodos de atividade
@@ -150,9 +148,14 @@ public class Facade {
 	}
 
 	// métodos de busca
+<<<<<<< HEAD
 	
 	public List<Pessoa> buscaPessoa(String criterioBusca) {
 		return this.buscaController.buscaPessoa(criterioBusca);
+=======
+	public String[] buscaPessoa(String criterioBusca) {
+		return this.buscaController.busca(criterioBusca);
+>>>>>>> b652e87ed0d78634646dd4707c9e1185372208a8
 	}
 
 	// métodos de função
