@@ -22,6 +22,11 @@ public class TarefaController {
 		this.validadorTarefa.validacao(nome, habilidades);
 		return this.tarefaService.cadastraTarefa(id, nome, habilidades);
 	}
+	
+	public String cadastrarTarefaGerencial(String id, String nome, String[] habilidades) {
+		this.validadorTarefa.validacao(nome, habilidades);
+		return this.tarefaService.cadastraTarefa(id, nome, habilidades);
+	}
 
 	public void alterarNomeTarefa(String idTarefa, String novoNome) {
 		this.tarefaService.alterarNomeTarefa(idTarefa, novoNome);

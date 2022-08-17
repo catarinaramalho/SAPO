@@ -40,9 +40,15 @@ public class TarefaService {
 	 *         chave). O id é gerado pela atividade de acordo com o id da propria
 	 *         tarefa e a ordem em que essa tarefa esta sendo cadastrada no mapa.
 	 */
-	public String cadastraTarefa(String id, String nome, String[] habilidades) {
+	public String cadastraTarefa(String atividadeId, String nome, String[] habilidades) {
 		validadorTarefa.validacao(nome, habilidades);
-		return atividadeService.recuperaAtividadeOuFalhe(id).cadastrarTarefa(nome, habilidades);
+		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefa(nome, habilidades);
+	}
+	
+
+	public String cadastraTarefaGerencial(String atividadeId, String nome, String[] habilidades, String[] idTarefas) {
+		validadorTarefa.validacao(nome, habilidades);
+		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefaGerencial(nome, habilidades, idTarefas);
 	}
 
 	
@@ -173,4 +179,5 @@ public class TarefaService {
 	public void removerPessoaTarefa(String cpf, String idTarefa) {
 		this.recuperaTarefaOuFalhe(idTarefa).removerPessoa(cpf);
 	}
+
 }
