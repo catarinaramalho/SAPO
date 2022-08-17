@@ -18,14 +18,14 @@ public class TarefaController {
 		this.validadorTarefa = new ValidadorTarefa();
 	}
 
-	public String cadastrarTarefa(String id, String nome, String[] habilidades) {
+	public String cadastrarTarefa(String atividadeId, String nome, String[] habilidades) {
 		this.validadorTarefa.validacao(nome, habilidades);
-		return this.tarefaService.cadastraTarefa(id, nome, habilidades);
+		return this.tarefaService.cadastraTarefa(atividadeId, nome, habilidades);
 	}
 	
-	public String cadastrarTarefaGerencial(String id, String nome, String[] habilidades) {
-		this.validadorTarefa.validacao(nome, habilidades);
-		return this.tarefaService.cadastraTarefa(id, nome, habilidades);
+	public String cadastrarTarefaGerencial(String atividadeId, String nome, String[] habilidades,String[] idTarefas) {
+		this.validadorTarefa.validacao(nome, habilidades, idTarefas);
+		return this.tarefaService.cadastraTarefaGerencial(atividadeId, nome, habilidades, idTarefas);
 	}
 
 	public void alterarNomeTarefa(String idTarefa, String novoNome) {
