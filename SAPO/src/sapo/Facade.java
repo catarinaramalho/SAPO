@@ -2,14 +2,10 @@ package sapo;
 
 import sapo.atividade.AtividadeController;
 import sapo.atividade.AtividadeService;
-<<<<<<< HEAD
 import sapo.busca.BuscaController;
 import sapo.busca.BuscaService;
-=======
 import sapo.funcao.FuncaoController;
 import sapo.funcao.FuncaoService;
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
-import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
 import sapo.tarefa.TarefaController;
@@ -26,12 +22,8 @@ public class Facade {
 	private PessoaController pessoaController;
 	private AtividadeController atividadeController;
 	private TarefaController tarefaController;
-<<<<<<< HEAD
 	private BuscaController buscaController;
-=======
-
 	private FuncaoController funcaoController;
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 	// … demais controllers
 
 	public Facade() {
@@ -45,12 +37,8 @@ public class Facade {
 		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
 		this.tarefaController = new TarefaController(tarefaService);
-<<<<<<< HEAD
 		this.buscaController = new BuscaController(buscaService);
-=======
-
 		this.funcaoController = new FuncaoController(funcaoService);
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
 		// … demais controllers
 	}
 
@@ -67,16 +55,12 @@ public class Facade {
 		this.pessoaController.alterarNomePessoa(cpf, novoNome);
 	}
 
-	public void alterarHabilidades(String cpf, String[] novasHabilidades) {
+	public void alterarHabilidadesPessoa(String cpf, String[] novasHabilidades) {
 		this.pessoaController.alterarHabilidades(cpf, novasHabilidades);
 	}
 
 	public void removerPessoa(String cpf) {
 		this.pessoaController.removerPessoa(cpf);
-	}
-
-	public Pessoa recuperarPessoa(String cpf) {
-		return this.pessoaController.recuperarPessoa(cpf);
 	}
 
 	public void adicionarComentarioPessoa(String cpf, String comentario, String autorCpf) {
@@ -85,7 +69,6 @@ public class Facade {
 
 	public String listarComentariosPessoa(String cpf) {
 		return this.pessoaController.listarComentariosPessoa(cpf);
-
 	}
 
 	// métodos de atividade
@@ -157,15 +140,11 @@ public class Facade {
 	public void removerPessoaTarefa(String cpf, String idTarefa) {
 		this.tarefaController.removerPessoaTarefa(cpf, idTarefa);
 	}
-<<<<<<< HEAD
-	
+
+	// métodos de busca
 	public String[] buscaPessoa(String criterioBusca) {
 		return this.buscaController.busca(criterioBusca);
 	}
-}
-=======
-
-	// métodos de busca
 
 	// métodos de função
 	public void cadastrarAluno(String cpf, String nome, String matr, int periodo, String[] habilidades) {
@@ -196,4 +175,3 @@ public class Facade {
 		return this.funcaoController.listarPessoas();
 	}
 }
->>>>>>> 91394aa1ca695ca189d868b6d35d0e57d22f9d55
