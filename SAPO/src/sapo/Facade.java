@@ -1,17 +1,11 @@
 package sapo;
 
-import java.util.List;
-
 import sapo.atividade.AtividadeController;
 import sapo.atividade.AtividadeService;
 import sapo.busca.BuscaController;
 import sapo.busca.BuscaService;
 import sapo.funcao.FuncaoController;
 import sapo.funcao.FuncaoService;
-<<<<<<< HEAD
-import sapo.pessoa.Pessoa;
-=======
->>>>>>> b652e87ed0d78634646dd4707c9e1185372208a8
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
 import sapo.tarefa.TarefaController;
@@ -37,7 +31,6 @@ public class Facade {
 		var atividadeService = new AtividadeService(pessoaService);
 		var tarefaService = new TarefaService(atividadeService, pessoaService);
 		var buscaService = new BuscaService(pessoaService);
-
 		var funcaoService = new FuncaoService(pessoaService);
 
 		this.pessoaController = new PessoaController(pessoaService);
@@ -148,15 +141,6 @@ public class Facade {
 	}
 
 	// métodos de busca
-<<<<<<< HEAD
-	
-	public List<Pessoa> buscaPessoa(String criterioBusca) {
-		return this.buscaController.buscaPessoa(criterioBusca);
-=======
-	public String[] buscaPessoa(String criterioBusca) {
-		return this.buscaController.busca(criterioBusca);
->>>>>>> b652e87ed0d78634646dd4707c9e1185372208a8
-	}
 
 	// métodos de função
 	public void cadastrarAluno(String cpf, String nome, String matr, int periodo, String[] habilidades) {
@@ -186,4 +170,6 @@ public class Facade {
 	public String[] listarPessoas() {
 		return this.funcaoController.listarPessoas();
 	}
+	
+	// métodos de tarefas gerenciais
 }
