@@ -14,7 +14,12 @@ public class BuscaController {
 	
 	public List<Pessoa> buscaPessoa(String criterioBusca) {
 		//VALIDACAO CRITERIO
-		return this.buscaService.busca(new BuscaPessoa(criterioBusca));
+		return this.buscaService.buscaPessoas(new BuscaPessoa(criterioBusca));
+	}
+	
+	public List<String> buscaAtividade(String criterioBusca){
+		//VALIDACAO CRITERIO
+		return this.buscaService.buscaAtividades(new BuscaAtividade(criterioBusca));
 	}
 	
 }

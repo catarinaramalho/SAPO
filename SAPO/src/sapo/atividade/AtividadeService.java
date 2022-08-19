@@ -2,6 +2,7 @@ package sapo.atividade;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaService;
@@ -71,5 +72,9 @@ public class AtividadeService {
 			throw new NoSuchElementException("A atividade com id " + atividadeId + " não existe");
 		}
 		return optional.get();
+	}
+
+	public Set<String> busca(String[] criterioBusca) {
+		return this.atividadeRepository.busca(criterioBusca);
 	}
 }

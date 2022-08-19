@@ -1,8 +1,10 @@
 package sapo.atividade;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import sapo.pessoa.Pessoa;
 
@@ -58,5 +60,35 @@ class AtividadeRepository {
 		this.validador.validacaoId(atividadeId);
 		atividade = this.atividades.get(atividadeId);
 		return Optional.ofNullable(atividade);
+	}
+
+	public Set<String> busca(String[] criterioBusca) {
+		Set<String> resultadosBusca = new HashSet<>();
+
+		for (String criterio : criterioBusca) {
+			for (String chave : this.atividades.keySet()) {
+				if (this.atividades.get(chave).getNome().equals(criterio)) {
+					resultadosBusca.add(this.atividades.get(chave).toString());
+					continue;
+				}
+				
+				if (this.atividades.get(chave).getId().equals(criterio)) {
+					resultadosBusca.add(this.atividades.get(chave).toString());
+					continue;
+				}
+				
+				if (this.atividades.get(chave).getId().contains(criterio)) {
+					resultadosBusca.add(this.atividades.get(chave).toString());
+					continue;
+				}
+				
+				if (this.atividades.get(chave).getDescricao().contains(criterio)) {
+					resultadosBusca.add(this.atividades.get(chave).toString());
+					continue;
+				}
+			}
+		}
+		
+		return resultadosBusca;
 	}
 }

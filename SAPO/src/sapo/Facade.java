@@ -30,7 +30,7 @@ public class Facade {
 		var pessoaService = new PessoaService();
 		var atividadeService = new AtividadeService(pessoaService);
 		var tarefaService = new TarefaService(atividadeService, pessoaService);
-		var buscaService = new BuscaService(pessoaService);
+		var buscaService = new BuscaService(pessoaService, atividadeService);
 		var funcaoService = new FuncaoService(pessoaService);
 
 		this.pessoaController = new PessoaController(pessoaService);

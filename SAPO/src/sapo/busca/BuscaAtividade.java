@@ -2,8 +2,8 @@ package sapo.busca;
 
 import java.util.Set;
 
+import sapo.atividade.AtividadeService;
 import sapo.pessoa.Pessoa;
-import sapo.pessoa.PessoaService;
 
 public class BuscaAtividade extends BuscaAbstract {
 	
@@ -11,10 +11,10 @@ public class BuscaAtividade extends BuscaAbstract {
 		super(criterioBusca);
 	}
 
-	@Override
-	public Set<Pessoa> busca(PessoaService pessoaService) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<String> busca(AtividadeService atividadeService) {
+		return atividadeService.busca(super.getCriterio());
 	}
+
+
 
 }

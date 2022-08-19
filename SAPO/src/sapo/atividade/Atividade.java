@@ -58,6 +58,10 @@ public class Atividade {
 	public int getEstado() {
 		return this.estado;
 	}
+	
+	public String getDescricao() {
+		return this.descricao;
+	}
 
 	public void setDescricao(String novaDescricao) {
 		this.descricao = novaDescricao;

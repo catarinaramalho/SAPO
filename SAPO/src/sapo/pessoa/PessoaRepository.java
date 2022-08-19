@@ -65,28 +65,38 @@ class PessoaRepository {
 
 	}
 
-	public Set<Pessoa> busca(String criterioBusca) {
+	public Set<Pessoa> busca(String[] criterioBusca) {
 		Set<Pessoa> resultadosBusca = new HashSet<>();
+		boolean possui;
+		boolean naoCorresponde;
 
 		for (String chave : this.pessoas.keySet()) {
-			if (chave.equals(criterioBusca)) {
-				resultadosBusca.add(this.pessoas.get(chave));
+			naoCorresponde = false;
+			for (String criterio : criterioBusca) {
+				possui = false;
+				if (chave.equals(criterio)) {
+					possui = true;
+				}
+				if (this.pessoas.get(chave).getNome().equals(criterio)) {
+					possui = true;
+				}
+				if (this.pessoas.get(chave).possuiHabilidade(criterio)) {
+					possui = true;
+				}
+
+				if (!possui) {
+					naoCorresponde = true;
+					break;
+				}
+			}
+			
+			if (naoCorresponde) {
 				continue;
 			}
 
-			if (chave.equals(this.pessoas.get(chave).getNome())) {
-				resultadosBusca.add(this.pessoas.get(chave));
-				continue;
-			}
-
-			if (this.pessoas.get(chave).possuiHabilidade(criterioBusca)) {
-				resultadosBusca.add(this.pessoas.get(chave));
-				continue;
-			}
+			resultadosBusca.add(this.pessoas.get(chave));
 
 		}
-
 		return resultadosBusca;
 	}
-
 }
