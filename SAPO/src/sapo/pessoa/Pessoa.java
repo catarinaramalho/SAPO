@@ -93,7 +93,7 @@ public class Pessoa {
 
 	public boolean possuiHabilidade(String criterio) {
 		for (String habilidade : this.habilidades) {
-			if (habilidade.equals(criterio)) {
+			if (habilidade.toUpperCase().equals(criterio)) {
 				return true;
 			}
 		}

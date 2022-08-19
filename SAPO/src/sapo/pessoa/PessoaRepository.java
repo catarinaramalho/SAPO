@@ -74,13 +74,13 @@ class PessoaRepository {
 			naoCorresponde = false;
 			for (String criterio : criterioBusca) {
 				possui = false;
-				if (chave.equals(criterio)) {
+				if (chave.toUpperCase().equals(criterio.toUpperCase())) {
 					possui = true;
 				}
-				if (this.pessoas.get(chave).getNome().equals(criterio)) {
+				if (this.pessoas.get(chave).getNome().toUpperCase().equals(criterio.toUpperCase())) {
 					possui = true;
 				}
-				if (this.pessoas.get(chave).possuiHabilidade(criterio)) {
+				if (this.pessoas.get(chave).possuiHabilidade(criterio.toUpperCase())) {
 					possui = true;
 				}
 

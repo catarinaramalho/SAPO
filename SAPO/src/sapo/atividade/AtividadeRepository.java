@@ -67,22 +67,22 @@ class AtividadeRepository {
 
 		for (String criterio : criterioBusca) {
 			for (String chave : this.atividades.keySet()) {
-				if (this.atividades.get(chave).getNome().equals(criterio)) {
+				if (this.atividades.get(chave).getNome().toUpperCase().equals(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
 				
-				if (this.atividades.get(chave).getId().equals(criterio)) {
+				if (this.atividades.get(chave).getId().toUpperCase().equals(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
 				
-				if (this.atividades.get(chave).getId().contains(criterio)) {
+				if (this.atividades.get(chave).getId().toUpperCase().contains(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
 				
-				if (this.atividades.get(chave).getDescricao().contains(criterio)) {
+				if (this.atividades.get(chave).getDescricao().toUpperCase().contains(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
