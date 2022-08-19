@@ -7,7 +7,6 @@ import sapo.pessoa.PessoaService;
 
 public class BuscaPessoa extends BuscaAbstract {
 	
-
 	public BuscaPessoa(String criterioBusca) {
 		super(criterioBusca);
 	}

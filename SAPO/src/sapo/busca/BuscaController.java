@@ -22,4 +22,9 @@ public class BuscaController {
 		return this.buscaService.buscaAtividades(new BuscaAtividade(criterioBusca));
 	}
 	
+	public List<String> buscaTarefa(String criterioBusca){
+		//VALIDACAO CRITERIO
+		return this.buscaService.buscaTarefas(new BuscaTarefa(criterioBusca));
+	}
+	
 }

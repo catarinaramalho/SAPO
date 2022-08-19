@@ -1,7 +1,9 @@
 package sapo.atividade;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -90,5 +92,19 @@ class AtividadeRepository {
 		}
 		
 		return resultadosBusca;
+	}
+
+	public List<Atividade> recuperaAtividades() {
+		Set<Atividade> atividades = new HashSet<>();
+		for (String id : this.atividades.keySet()) {
+			atividades.add(this.atividades.get(id));
+		}
+		
+		List<Atividade> listaAtividades = new ArrayList<>();
+		for (Atividade atividade : atividades) {
+			listaAtividades.add(atividade);
+		}
+		
+		return listaAtividades;
 	}
 }

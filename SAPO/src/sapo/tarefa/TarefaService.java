@@ -1,8 +1,12 @@
 package sapo.tarefa;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
+import sapo.atividade.Atividade;
 import sapo.atividade.AtividadeService;
 import sapo.pessoa.PessoaService;
 
@@ -44,14 +48,13 @@ public class TarefaService {
 		validadorTarefa.validacao(nome, habilidades);
 		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefa(nome, habilidades);
 	}
-	
 
 	public String cadastraTarefaGerencial(String atividadeId, String nome, String[] habilidades, String[] idTarefas) {
 		validadorTarefa.validacao(nome, habilidades);
-		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefaGerencial(nome, habilidades, idTarefas);
+		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefaGerencial(nome, habilidades,
+				idTarefas);
 	}
 
-	
 	private Tarefa recuperaTarefaOuFalhe(String idTarefa) {
 		this.validadorTarefa.validacaoId(idTarefa);
 
@@ -180,4 +183,13 @@ public class TarefaService {
 		this.recuperaTarefaOuFalhe(idTarefa).removerPessoa(cpf);
 	}
 
+	public Set<String> busca(String[] criterio) {
+		Set<String> retorno = new HashSet<>();
+		List<Atividade> atividades = atividadeService.recuperaAtividades();
+		for (Atividade atividade : atividades) {
+			for (String representacao : atividade.buscaTarefa(criterio))
+				retorno.add(representacao);
+		}
+		return retorno;
+	}
 }

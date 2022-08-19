@@ -1,5 +1,6 @@
 package sapo.atividade;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
@@ -76,5 +77,9 @@ public class AtividadeService {
 
 	public Set<String> busca(String[] criterioBusca) {
 		return this.atividadeRepository.busca(criterioBusca);
+	}
+	
+	public List<Atividade> recuperaAtividades(){
+		return this.atividadeRepository.recuperaAtividades();
 	}
 }

@@ -7,10 +7,12 @@ import java.util.Set;
 import sapo.atividade.AtividadeService;
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaService;
+import sapo.tarefa.TarefaService;
 
 public class BuscaService {
 	PessoaService pessoaService;
 	AtividadeService atividadeService;
+	TarefaService tarefaService;
 
 
 	public BuscaService(PessoaService pessoaService, AtividadeService atividadeService) {
@@ -48,4 +50,20 @@ public class BuscaService {
 		
 		return listaResultados;
 	}
+	
+	public List<String> buscaTarefas(BuscaTarefa buscaDesejada) {
+		Set<String> resultadosBusca = buscaDesejada.busca(this.tarefaService);
+
+		List<String> listaResultados = new ArrayList<>();
+
+		for (String representacao : resultadosBusca) {
+			listaResultados.add(representacao);
+		}
+		
+		//ORDENAÇÃO
+		
+		return listaResultados;
+	}
+	
+	
 }
