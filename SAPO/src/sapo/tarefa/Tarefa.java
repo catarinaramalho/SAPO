@@ -40,7 +40,13 @@ public class Tarefa {
 	public void setHabilidades(String[] novasHabilidades) {
 		this.habilidadesRecomendadas = novasHabilidades;
 	}
-
+	
+	public int getDuracao() {
+		return this.duracao;
+	}
+	public String[] getHabilidadesRecomendadas() {
+		return this.habilidadesRecomendadas;
+	}
 	public boolean getEstado() {
 		return this.concluida;
 	}
@@ -59,6 +65,10 @@ public class Tarefa {
 
 	public String[] getHabilidades() {
 		return this.habilidadesRecomendadas;
+	}
+	
+	public int tamanho() {
+		return 1;
 	}
 	
 	public boolean temPessoa() {

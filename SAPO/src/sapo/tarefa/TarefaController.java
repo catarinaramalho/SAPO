@@ -22,11 +22,6 @@ public class TarefaController {
 		this.validadorTarefa.validacao(nome, habilidades);
 		return this.tarefaService.cadastraTarefa(atividadeId, nome, habilidades);
 	}
-	
-	public String cadastrarTarefaGerencial(String atividadeId, String nome, String[] habilidades,String[] idTarefas) {
-		this.validadorTarefa.validacao(nome, habilidades, idTarefas);
-		return this.tarefaService.cadastraTarefaGerencial(atividadeId, nome, habilidades, idTarefas);
-	}
 
 	public void alterarNomeTarefa(String idTarefa, String novoNome) {
 		this.tarefaService.alterarNomeTarefa(idTarefa, novoNome);
@@ -62,5 +57,25 @@ public class TarefaController {
 
 	public void removerPessoaTarefa(String cpf, String idTarefa) {
 		this.tarefaService.removerPessoaTarefa(cpf, idTarefa);
+	}
+	
+	public String cadastrarTarefaGerencial(String atividadeId, String nome, String[] habilidades,String[] idTarefas) {
+		this.validadorTarefa.validacao(atividadeId, nome, habilidades, idTarefas);
+		return this.tarefaService.cadastraTarefaGerencial(atividadeId, nome, habilidades, idTarefas);
+	}
+	
+	public void adicionarNaTarefaGerencial(String idTarefaGerencial, String idTarefa) {
+		this.validadorTarefa.validacao(idTarefaGerencial, idTarefa);
+		this.tarefaService.adicionarNaTarefaGerencial(idTarefaGerencial, idTarefa);
+	}
+	
+	public void removerDaTarefaGerencial(String idTarefaGerencial, String idTarefa) {
+		this.validadorTarefa.validacao(idTarefaGerencial, idTarefa);
+		this.tarefaService.removerDaTarefaGerencial(idTarefaGerencial,idTarefa);
+	}
+	
+	public int contarTodasTarefasNaTarefaGerencial(String idTarefaGerencial) {
+		this.validadorTarefa.validacaoIdTarefaGerencial(idTarefaGerencial);
+		return this.tarefaService.contarTodasTarefasNaTarefaGerencial(idTarefaGerencial);
 	}
 }
