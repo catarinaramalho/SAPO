@@ -10,4 +10,7 @@ public abstract class BuscaAbstract implements BuscaInterface {
 	public String[] getCriterio() {
 		return this.criterio;
 	}
+	
+	public abstract String[] representaBusca();
+	
 }

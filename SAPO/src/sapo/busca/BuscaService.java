@@ -1,6 +1,7 @@
 package sapo.busca;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -13,18 +14,21 @@ public class BuscaService {
 	PessoaService pessoaService;
 	AtividadeService atividadeService;
 	TarefaService tarefaService;
+	HistoricoBuscas historicoBuscas;
 
 
 	public BuscaService(PessoaService pessoaService, AtividadeService atividadeService) {
 		this.pessoaService = pessoaService;
 		this.atividadeService = atividadeService;
+		this.historicoBuscas = new HistoricoBuscas();
 	}
 
 	
 	public List<Pessoa> buscaPessoas(BuscaPessoa buscaDesejada) {
-		
 		Set<Pessoa> resultadosBusca = buscaDesejada.busca(pessoaService);
 
+		this.historicoBuscas.registaBusca(buscaDesejada.representaBusca());
+		
 		List<Pessoa> listaResultados = new ArrayList<>();
 
 		for (Pessoa pessoa : resultadosBusca) {
@@ -40,13 +44,14 @@ public class BuscaService {
 	public List<String> buscaAtividades(BuscaAtividade buscaDesejada) {
 		Set<String> resultadosBusca = buscaDesejada.busca(atividadeService);
 
+		this.historicoBuscas.registaBusca(buscaDesejada.representaBusca());
+		
 		List<String> listaResultados = new ArrayList<>();
 
 		for (String representacao : resultadosBusca) {
 			listaResultados.add(representacao);
 		}
 		
-		//ORDENAÇÃO
 		
 		return listaResultados;
 	}
@@ -54,6 +59,8 @@ public class BuscaService {
 	public List<String> buscaTarefas(BuscaTarefa buscaDesejada) {
 		Set<String> resultadosBusca = buscaDesejada.busca(this.tarefaService);
 
+		this.historicoBuscas.registaBusca(buscaDesejada.representaBusca());
+		
 		List<String> listaResultados = new ArrayList<>();
 
 		for (String representacao : resultadosBusca) {
@@ -66,13 +73,13 @@ public class BuscaService {
 	public List<String> buscaTarefas(BuscaTarefa buscaDesejada, String idAtividade) {
 		Set<String> resultadosBusca = buscaDesejada.busca(this.tarefaService, idAtividade);
 
+		this.historicoBuscas.registaBusca(buscaDesejada.representaBusca());
+		
 		List<String> listaResultados = new ArrayList<>();
 
 		for (String representacao : resultadosBusca) {
 			listaResultados.add(representacao);
 		}
-		
-		//ORDENAÇÃO
 		
 		return listaResultados;
 	}
@@ -81,7 +88,21 @@ public class BuscaService {
 	public String[] sugerirTarefas(SugerirTarefa sugerirTarefa, String cpf) {
 		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
 		
-		return sugerirTarefa.sugere(tarefaService, pessoa);
+		String[] resultado = sugerirTarefa.sugere(tarefaService, pessoa);
+		
+		this.historicoBuscas.registaBusca(sugerirTarefa.representaBusca());
+		
+		return resultado;
+	}
+
+
+	public String[] buscasMaisRecentes(int nBuscas) {
+		return this.historicoBuscas.buscasMaisRecentes(nBuscas);
+	}
+
+
+	public String[] exibirHistóricoBusca(int indexBusca) {
+		return this.historicoBuscas.exibirHistóricoBusca(indexBusca);
 	}
 	
 	

@@ -23,6 +23,7 @@ public class Tarefa {
 	protected int duracao;
 	protected boolean concluida;
 	protected Map<String, Pessoa> pessoasAssociadas;
+	
 
 	public Tarefa(String nome, String codigo, String[] habilidades, String nomeAtividade) {
 		this.nome = nome;
@@ -58,6 +59,13 @@ public class Tarefa {
 
 	public String[] getHabilidades() {
 		return this.habilidadesRecomendadas;
+	}
+	
+	public boolean temPessoa() {
+		if (this.pessoasAssociadas.size() == 0) {
+			return false;
+		}
+		return true;
 	}
 
 	/**

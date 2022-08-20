@@ -240,16 +240,27 @@ public class Atividade {
 	public Set<String> sugere(String[] habilidades) {
 		Set<String> resultadosBusca = new HashSet<>();
 		int contador = habilidades.length;
+		boolean temPessoa = false;
 		while (true) {
 			if (contador <= 0) {
 				break;
 			}
 			for (String tarefa : this.tarefas.keySet()) {
-				if (habilidadesEmComum(habilidades, tarefa) == contador) {
+				if (habilidadesEmComum(habilidades, tarefa) == contador && this.tarefas.get(tarefa).temPessoa() == temPessoa) {
 					resultadosBusca.add(this.tarefas.get(tarefa).toString());
 				}
-				contador--;
 			}
+			
+			if(!temPessoa) {
+				temPessoa = true;
+				continue;
+			}
+			
+			if(temPessoa) {
+				contador--;
+				temPessoa = false;
+			}
+			
 		}
 		return resultadosBusca;
 	}
