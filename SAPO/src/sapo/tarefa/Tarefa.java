@@ -55,6 +55,10 @@ public class Tarefa {
 	public String getCodigo() {
 		return this.codigo;
 	}
+	
+	public String[] getHabilidades() {
+		return this.habilidadesRecomendadas;
+	}
 
 
 	/**

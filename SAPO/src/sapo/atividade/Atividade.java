@@ -3,11 +3,13 @@ package sapo.atividade;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 
 import sapo.pessoa.Pessoa;
 import sapo.tarefa.Tarefa;
@@ -43,7 +45,7 @@ public class Atividade {
 		this.responsavel = responsavel;
 		this.estado = 0;
 		this.contadorTarefas = 0;
-		this.tarefas = new HashMap<>();
+		this.tarefas = new TreeMap<>();
 		this.validador = new ValidadorAtividade();
 	}
 
@@ -58,7 +60,7 @@ public class Atividade {
 	public int getEstado() {
 		return this.estado;
 	}
-	
+
 	public String getDescricao() {
 		return this.descricao;
 	}
@@ -139,7 +141,8 @@ public class Atividade {
 				tarefasDeTarefaGerencial.add(this.recuperarTarefa(idTarefa).get());
 			}
 		}
-		this.tarefas.put(idPronto, new TarefaGerencial(nome, idPronto, habilidades, this.getNome(),tarefasDeTarefaGerencial));
+		this.tarefas.put(idPronto,
+				new TarefaGerencial(nome, idPronto, habilidades, this.getNome(), tarefasDeTarefaGerencial));
 
 		return idPronto;
 	}
@@ -208,12 +211,42 @@ public class Atividade {
 				if (this.tarefas.get(chave).getNome().toUpperCase().equals(criterio.toUpperCase())) {
 					resultadosBusca.add(this.tarefas.get(chave).toString());
 					continue;
-				}		
+				}
 			}
 		}
-		
+
 		return resultadosBusca;
 	}
 
-	
+	private int habilidadesEmComum(String[] habilidades, String id) {
+		int contador = 0;
+		for (String habilidadePessoa : habilidades) {
+			for (String habilidadeTarefa : this.tarefas.get(id).getHabilidades()) {
+				if (habilidadePessoa.equals(habilidadeTarefa)) {
+					contador += 1;
+					break;
+				}
+			}
+		}
+		return contador;
+	}
+
+	public Set<String> sugere(String[] habilidades) {
+		Set<String> resultadosBusca = new HashSet<>();
+		int contador = habilidades.length;
+		while (true) {
+			if (contador <= 0) {
+				break;
+			}
+			for (String tarefa : this.tarefas.keySet()) {
+				if (habilidadesEmComum(habilidades, tarefa) == contador) {
+					resultadosBusca.add(this.tarefas.get(tarefa).toString());
+				}
+				contador--;
+			}
+		}
+
+		return resultadosBusca;
+	}
+
 }

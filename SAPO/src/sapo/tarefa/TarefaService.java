@@ -192,4 +192,25 @@ public class TarefaService {
 		}
 		return retorno;
 	}
+
+	public Set<String> busca(String[] criterio, String idAtividade) {
+		return this.atividadeService.recuperaAtividadeOuFalhe(idAtividade).buscaTarefa(criterio);
+	}
+
+	public String[] sugereTarefa(String[] habilidades) {
+		Set<String> retorno = new HashSet<>();
+		List<Atividade> atividades = atividadeService.recuperaAtividades();
+		for (Atividade atividade : atividades) {
+			for (String representacao : atividade.sugere(habilidades))
+				retorno.add(representacao);
+		}
+		
+		String[] arrayResultados = new String[retorno.size()];
+
+		int i = 0;
+		for (String resultado : retorno)
+			arrayResultados[i++] = resultado;
+		
+		return arrayResultados;
+	}
 }

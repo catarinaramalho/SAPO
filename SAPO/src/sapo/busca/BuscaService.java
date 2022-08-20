@@ -60,9 +60,28 @@ public class BuscaService {
 			listaResultados.add(representacao);
 		}
 		
+		return listaResultados;
+	}
+	
+	public List<String> buscaTarefas(BuscaTarefa buscaDesejada, String idAtividade) {
+		Set<String> resultadosBusca = buscaDesejada.busca(this.tarefaService, idAtividade);
+
+		List<String> listaResultados = new ArrayList<>();
+
+		for (String representacao : resultadosBusca) {
+			listaResultados.add(representacao);
+		}
+		
 		//ORDENAÇÃO
 		
 		return listaResultados;
+	}
+
+
+	public String[] sugerirTarefas(SugerirTarefa sugerirTarefa, String cpf) {
+		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
+		
+		return sugerirTarefa.sugere(tarefaService, pessoa);
 	}
 	
 	
