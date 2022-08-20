@@ -204,13 +204,17 @@ public class TarefaService {
 			for (String representacao : atividade.sugere(habilidades))
 				retorno.add(representacao);
 		}
-		
+
 		String[] arrayResultados = new String[retorno.size()];
 
 		int i = 0;
 		for (String resultado : retorno)
 			arrayResultados[i++] = resultado;
-		
+
 		return arrayResultados;
+	}
+
+	public Set<Tarefa> tarefasAssociadasPessoa(String cpf) {
+		return this.atividadeService.tarefasAssociadasPessoa(cpf);
 	}
 }

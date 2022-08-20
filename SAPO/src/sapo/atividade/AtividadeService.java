@@ -7,6 +7,7 @@ import java.util.Set;
 
 import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaService;
+import sapo.tarefa.Tarefa;
 
 /**
  * 
@@ -81,5 +82,9 @@ public class AtividadeService {
 	
 	public List<Atividade> recuperaAtividades(){
 		return this.atividadeRepository.recuperaAtividades();
+	}
+	
+	public Set<Tarefa> tarefasAssociadasPessoa(String cpf) {
+		return this.atividadeRepository.tarefasAssociadasPessoa(cpf);
 	}
 }

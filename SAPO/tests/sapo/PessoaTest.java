@@ -180,7 +180,7 @@ class PessoaTest {
 
 		}
 	}
-	
+
 	@Test
 	void testAlterarHabilidadesPessoa() {
 		fail("Not yet implemented");

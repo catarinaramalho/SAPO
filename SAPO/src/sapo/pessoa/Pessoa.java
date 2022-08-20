@@ -7,12 +7,13 @@ import java.util.Objects;
 
 import sapo.funcao.Funcao;
 
-public class Pessoa {
+public class Pessoa implements Comparable<Pessoa> {
 	private String cpf;
 	private String nome;
 	private String[] habilidades;
 	private List<Comentario> comentarios;
 	private Funcao funcao;
+	private int nivel;
 	private ValidadorPessoa validador;
 
 	public Pessoa(String cpf, String nome, String[] habilidades) {
@@ -25,6 +26,7 @@ public class Pessoa {
 		this.habilidades = habilidades;
 		this.comentarios = new ArrayList<>();
 		this.funcao = funcao;
+		this.nivel = 0;
 		this.validador = new ValidadorPessoa();
 	}
 
@@ -54,6 +56,10 @@ public class Pessoa {
 		return this.comentarios;
 	}
 
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
 	public Funcao getFuncao() {
 		return this.funcao;
 	}
@@ -62,9 +68,8 @@ public class Pessoa {
 		this.funcao = novaFuncao;
 	}
 
-	// validar comentarios
-	public void setComentarios(List<Comentario> comentarios) {
-		this.comentarios = comentarios;
+	public int getNivel() {
+		return this.nivel;
 	}
 
 	// validar comentarios
@@ -80,7 +85,6 @@ public class Pessoa {
 			listagemHabilidades += "- " + habilidade + "\n";
 		}
 		return listagemHabilidades.trim();
-
 	}
 
 	public String listarComentarios() {
@@ -125,5 +129,13 @@ public class Pessoa {
 			return false;
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(cpf, other.cpf);
+	}
+
+	@Override
+	public int compareTo(Pessoa outraPessoa) {
+		if (this.getNome().compareTo(outraPessoa.getNome()) == 0) {
+			return this.getCpf().compareTo(outraPessoa.getCpf());
+		}
+		return this.getNome().compareTo(outraPessoa.getNome());
 	}
 }

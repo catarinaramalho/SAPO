@@ -51,15 +51,14 @@ public class Tarefa {
 	public String getNome() {
 		return this.nome;
 	}
-	
+
 	public String getCodigo() {
 		return this.codigo;
 	}
-	
+
 	public String[] getHabilidades() {
 		return this.habilidadesRecomendadas;
 	}
-
 
 	/**
 	 * Metodo que adiciona uma quantidade de horas ao atributo "duracao" dessa
@@ -99,10 +98,14 @@ public class Tarefa {
 	}
 
 	/**
-	 * Metodo que 
+	 * Metodo que
 	 */
 	public void concluirTarefa() {
 		this.concluida = true;
+	}
+
+	public boolean pessoaAssociada(String cpf) {
+		return this.pessoasAssociadas.containsKey(cpf);
 	}
 
 	@Override
@@ -137,7 +140,5 @@ public class Tarefa {
 		}
 
 		return retorno;
-
 	}
-
 }

@@ -1,15 +1,16 @@
 package sapo.atividade;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 
 import sapo.pessoa.Pessoa;
+import sapo.tarefa.Tarefa;
 
 /**
  * Repositório de Atividades. Com operações simples de cadastrar e recuperar
@@ -74,24 +75,24 @@ class AtividadeRepository {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
-				
+
 				if (this.atividades.get(chave).getId().toUpperCase().equals(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
-				
+
 				if (this.atividades.get(chave).getId().toUpperCase().contains(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
-				
+
 				if (this.atividades.get(chave).getDescricao().toUpperCase().contains(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
 			}
 		}
-		
+
 		return resultadosBusca;
 	}
 
@@ -100,12 +101,20 @@ class AtividadeRepository {
 		for (String id : this.atividades.keySet()) {
 			atividades.add(this.atividades.get(id));
 		}
-		
+
 		List<Atividade> listaAtividades = new ArrayList<>();
 		for (Atividade atividade : atividades) {
 			listaAtividades.add(atividade);
 		}
-		
+
 		return listaAtividades;
+	}
+
+	public Set<Tarefa> tarefasAssociadasPessoa(String cpf) {
+		Set<Tarefa> tarefasAssociadas = new HashSet<>();
+		for (Map.Entry<String, Atividade> atividade : this.atividades.entrySet()) {
+			tarefasAssociadas.addAll(atividade.getValue().tarefasAssociadasPessoa(cpf));
+		}
+		return tarefasAssociadas;
 	}
 }

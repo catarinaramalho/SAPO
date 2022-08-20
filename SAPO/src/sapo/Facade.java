@@ -31,7 +31,7 @@ public class Facade {
 		var atividadeService = new AtividadeService(pessoaService);
 		var tarefaService = new TarefaService(atividadeService, pessoaService);
 		var buscaService = new BuscaService(pessoaService, atividadeService);
-		var funcaoService = new FuncaoService(pessoaService);
+		var funcaoService = new FuncaoService(pessoaService, tarefaService);
 
 		this.pessoaController = new PessoaController(pessoaService);
 		this.atividadeController = new AtividadeController(atividadeService);
@@ -170,6 +170,6 @@ public class Facade {
 	public String[] listarPessoas() {
 		return this.funcaoController.listarPessoas();
 	}
-	
+
 	// métodos de tarefas gerenciais
 }

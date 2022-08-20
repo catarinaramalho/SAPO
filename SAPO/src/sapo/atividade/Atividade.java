@@ -1,9 +1,7 @@
 package sapo.atividade;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -174,6 +172,16 @@ public class Atividade {
 		return Optional.ofNullable(tarefa);
 	}
 
+	public Set<Tarefa> tarefasAssociadasPessoa(String cpf) {
+		Set<Tarefa> tarefasAssociadas = new HashSet<>();
+		for (Map.Entry<String, Tarefa> tarefa : this.tarefas.entrySet()) {
+			if (tarefa.getValue().pessoaAssociada(cpf)) {
+				tarefasAssociadas.add(tarefa.getValue());
+			}
+		}
+		return tarefasAssociadas;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -205,7 +213,6 @@ public class Atividade {
 
 	public Set<String> buscaTarefa(String[] criterioBusca) {
 		Set<String> resultadosBusca = new HashSet<>();
-
 		for (String criterio : criterioBusca) {
 			for (String chave : this.tarefas.keySet()) {
 				if (this.tarefas.get(chave).getNome().toUpperCase().equals(criterio.toUpperCase())) {
@@ -214,7 +221,6 @@ public class Atividade {
 				}
 			}
 		}
-
 		return resultadosBusca;
 	}
 
@@ -245,8 +251,6 @@ public class Atividade {
 				contador--;
 			}
 		}
-
 		return resultadosBusca;
 	}
-
 }

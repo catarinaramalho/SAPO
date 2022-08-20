@@ -1,8 +1,11 @@
 package sapo.pessoa;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 
@@ -44,7 +47,6 @@ class PessoaRepository {
 		} else {
 			throw new IllegalArgumentException("O CPF informado não está cadastrado no sistema!");
 		}
-
 	}
 
 	Optional<Pessoa> recuperarPessoa(String cpf) {
@@ -62,7 +64,6 @@ class PessoaRepository {
 			}
 		}
 		return false;
-
 	}
 
 	public Set<Pessoa> busca(String[] criterioBusca) {
@@ -89,7 +90,7 @@ class PessoaRepository {
 					break;
 				}
 			}
-			
+
 			if (naoCorresponde) {
 				continue;
 			}
@@ -98,5 +99,15 @@ class PessoaRepository {
 
 		}
 		return resultadosBusca;
+	}
+
+	String[] listarPessoas() {
+		String[] pessoas = new String[this.pessoas.size()];
+		List<Entry<String, Pessoa>> list = new ArrayList<>(this.pessoas.entrySet());
+		list.sort(Entry.comparingByValue());
+		for (int i = 0; i < pessoas.length; i++) {
+			pessoas[i] = list.get(i).getValue().getNome() + " - " + list.get(i).getValue().getCpf();
+		}
+		return pessoas;
 	}
 }
