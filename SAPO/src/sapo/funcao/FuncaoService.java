@@ -62,10 +62,6 @@ public class FuncaoService {
 	}
 
 	public String[] listarPessoas() {
-		String[] pessoas = this.pessoaService.listarPessoas();
-		for (int i = 0; i < pessoas.length; i++) {
-			System.out.println(pessoas[i]);
-		}
 		return this.pessoaService.listarPessoas();
 	}
 

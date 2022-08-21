@@ -133,6 +133,9 @@ public class Pessoa implements Comparable<Pessoa> {
 
 	@Override
 	public int compareTo(Pessoa outraPessoa) {
+		if (outraPessoa == null) {
+			throw new NullPointerException("Pessoa não pode ser nulo");
+		}
 		if (this.getNome().compareTo(outraPessoa.getNome()) == 0) {
 			return this.getCpf().compareTo(outraPessoa.getCpf());
 		}
