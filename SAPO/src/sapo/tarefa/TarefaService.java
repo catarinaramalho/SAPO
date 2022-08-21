@@ -49,12 +49,6 @@ public class TarefaService {
 		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefa(nome, habilidades);
 	}
 
-	public String cadastraTarefaGerencial(String atividadeId, String nome, String[] habilidades, String[] idTarefas) {
-		validadorTarefa.validacao(nome, habilidades);
-		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefaGerencial(nome, habilidades,
-				idTarefas);
-	}
-
 	private Tarefa recuperaTarefaOuFalhe(String idTarefa) {
 		this.validadorTarefa.validacaoId(idTarefa);
 
@@ -217,4 +211,60 @@ public class TarefaService {
 	public Set<Tarefa> tarefasAssociadasPessoa(String cpf) {
 		return this.atividadeService.tarefasAssociadasPessoa(cpf);
 	}
+	
+	private boolean isTarefaGerencial(Tarefa tarefa) {
+		if (tarefa instanceof TarefaGerencial) {
+			return true;
+		} return false;
+	}
+	
+	public String cadastraTarefaGerencial(String atividadeId, String nome, String[] habilidades, String[] idTarefas) {
+		this.validadorTarefa.validacao(atividadeId, nome, habilidades, idTarefas);
+		return atividadeService.recuperaAtividadeOuFalhe(atividadeId).cadastrarTarefaGerencial(nome, habilidades, idTarefas);
+	}
+	
+	public void adicionarNaTarefaGerencial(String idTarefaGerencial, String idTarefa) {
+		this.validadorTarefa.validacao(idTarefaGerencial, idTarefa);
+		Tarefa tarefa = this.recuperaTarefaOuFalhe(idTarefaGerencial);
+		if (this.isTarefaGerencial(tarefa)) {
+			TarefaGerencial tarefaGerencial = (TarefaGerencial)(tarefa);
+			Tarefa tarefaArmazenada = this.recuperaTarefaOuFalhe(idTarefa);
+			if (this.isTarefaGerencial(tarefaArmazenada)) {
+				TarefaGerencial tarefaGerencialArmazenada = (TarefaGerencial)(tarefaArmazenada);
+				tarefaGerencial.adicionarNaTarefaGerencial(tarefaGerencialArmazenada);
+			} else {
+				tarefaGerencial.adicionarNaTarefaGerencial(tarefaArmazenada);
+			}
+			
+		} else {
+			throw new IllegalArgumentException("Não existe Tarefa Gerencial para esse id! Portanto, não pode adicionar uma tarefa dela!");
+		}
+		
+	}
+	
+	public void removerDaTarefaGerencial(String idTarefaGerencial, String idTarefa) {
+		this.validadorTarefa.validacao(idTarefaGerencial, idTarefa);
+		Tarefa tarefa = this.recuperaTarefaOuFalhe(idTarefaGerencial);
+		if (this.isTarefaGerencial(tarefa)) {
+			TarefaGerencial tarefaGerencial = (TarefaGerencial)(tarefa);
+			tarefaGerencial.removerDaTarefaGerencial(this.recuperaTarefaOuFalhe(idTarefa));
+			
+		} else {
+			throw new IllegalArgumentException("Não existe Tarefa Gerencial para esse id! Portanto, não pode remover uma tarefa dela!");
+		}
+		
+	}
+	
+	public int contarTodasTarefasNaTarefaGerencial(String idTarefaGerencial) {
+		this.validadorTarefa.validacaoIdTarefaGerencial(idTarefaGerencial);
+		Tarefa tarefa = this.recuperaTarefaOuFalhe(idTarefaGerencial);
+		if (this.isTarefaGerencial(tarefa)) {
+			TarefaGerencial tarefaGerencial = (TarefaGerencial)(tarefa);
+			return tarefaGerencial.contarTodasTarefasNaTarefaGerencial();
+			
+		} else {
+			throw new IllegalArgumentException("Não existe Tarefa Gerencial para esse id! Portanto, não pode contar tarefas dela!");
+		}
+	}
+
 }
