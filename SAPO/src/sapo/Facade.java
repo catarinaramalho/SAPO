@@ -6,6 +6,7 @@ import sapo.busca.BuscaController;
 import sapo.busca.BuscaService;
 import sapo.funcao.FuncaoController;
 import sapo.funcao.FuncaoService;
+import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
 import sapo.tarefa.TarefaController;
@@ -141,6 +142,34 @@ public class Facade {
 	}
 
 	// métodos de busca
+	
+	public String[] exibirPessoas(String consulta) {
+		return this.buscaController.buscarPessoas(consulta);
+	}
+	
+	public String[] buscarAtividade(String consulta) {
+		return this.buscaController.buscarAtividades(consulta);
+	}
+
+	public String[] buscarTarefas(String nome) {
+		return this.buscaController.buscarTarefas(nome);
+	}
+
+	public String[] buscarTarefas(String idAtividade, String nome) {
+		return this.buscaController.buscarTarefas(nome, idAtividade);
+	}
+
+	public String[] sugerirTarefas(String cpf) {
+		return this.buscaController.sugerirTarefas(cpf);
+	}
+
+	public String[] buscasMaisRecentes(int nBuscas) {
+		return this.buscaController.buscasMaisRecentes(nBuscas);
+	}
+
+	public String[] exibirHistóricoBusca(int indexBusca) {
+		return this.buscaController.exibirHistóricoBusca(indexBusca);
+	}
 
 	// métodos de função
 	public void cadastrarAluno(String cpf, String nome, String matr, int periodo, String[] habilidades) {

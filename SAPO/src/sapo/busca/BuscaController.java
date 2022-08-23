@@ -14,22 +14,22 @@ public class BuscaController {
 		this.validadorBusca = new ValidadorBusca();
 	}
 	
-	public List<Pessoa> buscarPessoas(String criterioBusca) {
+	public String[] buscarPessoas(String criterioBusca) {
 		this.validadorBusca.validaCriterio(criterioBusca);
 		return this.buscaService.buscaPessoas(new BuscaPessoa(criterioBusca));
 	}
 	
-	public List<String> buscarAtividades(String criterioBusca){
+	public String[] buscarAtividades(String criterioBusca){
 		this.validadorBusca.validaCriterio(criterioBusca);
 		return this.buscaService.buscaAtividades(new BuscaAtividade(criterioBusca));
 	}
 	
-	public List<String> buscarTarefas(String criterioBusca){
+	public String[] buscarTarefas(String criterioBusca){
 		this.validadorBusca.validaCriterio(criterioBusca);
 		return this.buscaService.buscaTarefas(new BuscaTarefa(criterioBusca));
 	}
 	
-	public List<String> buscarTarefas(String criterioBusca, String idAtividade){
+	public String[] buscarTarefas(String criterioBusca, String idAtividade){
 		this.validadorBusca.validaCriterio(criterioBusca);
 		return this.buscaService.buscaTarefas(new BuscaTarefa(criterioBusca), idAtividade);
 	}
