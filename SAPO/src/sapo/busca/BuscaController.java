@@ -44,8 +44,8 @@ public class BuscaController {
 		return this.buscaService.buscasMaisRecentes(nBuscas);
 	}
 	
-	public String[] exibirHistóricoBusca(int indexBusca) {
+	public String[] exibirHistoricoBusca(int indexBusca) {
 		this.validadorBusca.validaNBuscas(indexBusca);
-		return this.buscaService.exibirHistóricoBusca(indexBusca);
+		return this.buscaService.exibirHistoricoBusca(indexBusca);
 	}
 }

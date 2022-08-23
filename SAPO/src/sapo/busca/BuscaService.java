@@ -120,7 +120,7 @@ public class BuscaService {
 		return this.historicoBuscas.buscasMaisRecentes(nBuscas);
 	}
 
-	public String[] exibirHistóricoBusca(int indexBusca) {
+	public String[] exibirHistoricoBusca(int indexBusca) {
 		return this.historicoBuscas.exibirHistóricoBusca(indexBusca);
 	}
 

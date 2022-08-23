@@ -140,8 +140,6 @@ public class Facade {
 	public void removerPessoaTarefa(String cpf, String idTarefa) {
 		this.tarefaController.removerPessoaTarefa(cpf, idTarefa);
 	}
-
-	// métodos de busca
 	
 	public String[] exibirPessoas(String consulta) {
 		return this.buscaController.buscarPessoas(consulta);
@@ -168,7 +166,7 @@ public class Facade {
 	}
 
 	public String[] exibirHistóricoBusca(int indexBusca) {
-		return this.buscaController.exibirHistóricoBusca(indexBusca);
+		return this.buscaController.exibirHistoricoBusca(indexBusca);
 	}
 
 	// métodos de função
