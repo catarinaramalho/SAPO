@@ -2,10 +2,13 @@ package sapo.pessoa;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Objects;
 
 import sapo.funcao.Funcao;
+import sapo.tarefa.Tarefa;
 
 public class Pessoa implements Comparable<Pessoa> {
 	private String cpf;
@@ -14,6 +17,7 @@ public class Pessoa implements Comparable<Pessoa> {
 	private List<Comentario> comentarios;
 	private Funcao funcao;
 	private int nivel;
+	private Set<Tarefa> tarefasAvaliadas;
 	private ValidadorPessoa validador;
 
 	public Pessoa(String cpf, String nome, String[] habilidades) {
@@ -27,6 +31,7 @@ public class Pessoa implements Comparable<Pessoa> {
 		this.comentarios = new ArrayList<>();
 		this.funcao = funcao;
 		this.nivel = 0;
+		this.tarefasAvaliadas = new HashSet<>();
 		this.validador = new ValidadorPessoa();
 	}
 
@@ -102,6 +107,11 @@ public class Pessoa implements Comparable<Pessoa> {
 			}
 		}
 		return false;
+	}
+
+	private void armazenaNivel(int nivel) {
+		this.nivel = nivel;
+		// TODO
 	}
 
 	@Override

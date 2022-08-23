@@ -15,16 +15,29 @@ import sapo.tarefa.TarefaGerencial;
 
 /**
  * Representação de uma atividade. Uma atividade representa um conjunto de ações
- * (tarefas) que devem ser tomadas para atingir um determinado objetivo. F
+ * (tarefas) que devem ser tomadas para atingir um determinado objetivo.
  * 
  * @author Jônatas Tavares dos Santos - 121110769
  * @author Lucas Leones Costa dos Santos - 121110281
  */
 public class Atividade {
 
+	/**
+	 * Identificador da atividade. String composta pelas 3 primeiras consoantes do
+	 * nome da atividade e um número sequencial que identifica unicamente atividade.
+	 */
 	private String id;
+	/**
+	 * String que representa o nome da atividade.
+	 */
 	private String nome;
+	/**
+	 * String que representa a descrição da atividade.
+	 */
 	private String descricao;
+	/**
+	 * Pessoa responsável pela atividade. Pode assumir valor null.
+	 */
 	private Pessoa responsavel;
 	/**
 	 * Inteiro que representa o estado de uma atividade. 0 caso a atividade esteja
@@ -32,10 +45,29 @@ public class Atividade {
 	 * atividade esteja desativada (abandonada ou invalidada).
 	 */
 	private int estado;
+	/**
+	 * Contador que contabiliza quantas tarefas foram armazenadas para poder gerar o
+	 * id de tarefas.
+	 */
 	private int contadorTarefas;
+	/**
+	 * Mapa que armazena as tarefas da atividade.
+	 */
 	private Map<String, Tarefa> tarefas;
+	/**
+	 * Validador utilizado para validar os
+	 */
 	private ValidadorAtividade validador;
 
+	/**
+	 * Construtor de Atividade. Constrói uma atividade a partir de um id, nome,
+	 * descrição e pessoa responsável.
+	 * 
+	 * @param id          String com o identificador único da atividade.
+	 * @param nome        String com o nome da atividade.
+	 * @param descricao   String com a descrição da atividade.
+	 * @param responsavel Pessoa responsável pela atividade.
+	 */
 	public Atividade(String id, String nome, String descricao, Pessoa responsavel) {
 		this.id = id;
 		this.nome = nome;
@@ -47,14 +79,31 @@ public class Atividade {
 		this.validador = new ValidadorAtividade();
 	}
 
+	/**
+	 * Retorna o valor do atributo de id único da atividade.
+	 * 
+	 * @return String com o id da atividade.
+	 */
 	public String getId() {
 		return this.id;
 	}
 
+	/**
+	 * Retorna o valor do atributo de nome da atividade.
+	 * 
+	 * @return String com o nome da atividade.
+	 */
 	public String getNome() {
 		return this.nome;
 	}
 
+	/**
+	 * Retorna o valor do atributo de estado da atividade. 0 caso a atividade esteja
+	 * aberta, 1 caso a atividade esteja encerrada (concluída), ou 2 caso a
+	 * atividade esteja desativada (abandonada ou invalidada).
+	 * 
+	 * @return int que representa o estado da atividade.
+	 */
 	public int getEstado() {
 		return this.estado;
 	}
@@ -246,21 +295,22 @@ public class Atividade {
 				break;
 			}
 			for (String tarefa : this.tarefas.keySet()) {
-				if (habilidadesEmComum(habilidades, tarefa) == contador && this.tarefas.get(tarefa).temPessoa() == temPessoa) {
+				if (habilidadesEmComum(habilidades, tarefa) == contador
+						&& this.tarefas.get(tarefa).temPessoa() == temPessoa) {
 					resultadosBusca.add(this.tarefas.get(tarefa).toString());
 				}
 			}
-			
-			if(!temPessoa) {
+
+			if (!temPessoa) {
 				temPessoa = true;
 				continue;
 			}
-			
-			if(temPessoa) {
+
+			if (temPessoa) {
 				contador--;
 				temPessoa = false;
 			}
-			
+
 		}
 		return resultadosBusca;
 	}
