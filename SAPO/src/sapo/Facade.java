@@ -6,7 +6,6 @@ import sapo.busca.BuscaController;
 import sapo.busca.BuscaService;
 import sapo.funcao.FuncaoController;
 import sapo.funcao.FuncaoService;
-import sapo.pessoa.Pessoa;
 import sapo.pessoa.PessoaController;
 import sapo.pessoa.PessoaService;
 import sapo.tarefa.TarefaController;
@@ -140,11 +139,12 @@ public class Facade {
 	public void removerPessoaTarefa(String cpf, String idTarefa) {
 		this.tarefaController.removerPessoaTarefa(cpf, idTarefa);
 	}
-	
+
+	// métodos de busca
 	public String[] exibirPessoas(String consulta) {
 		return this.buscaController.buscarPessoas(consulta);
 	}
-	
+
 	public String[] buscarAtividade(String consulta) {
 		return this.buscaController.buscarAtividades(consulta);
 	}
