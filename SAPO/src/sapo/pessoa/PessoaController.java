@@ -5,7 +5,7 @@ package sapo.pessoa;
  * aplicação mapeando e direcionado as ações recebidas pelo Facade para o Pessoa
  * Service.
  * 
- * @author Catarina Ramalho dos Santos - 121110769
+ * @author Catarina Ramalho dos Santos - 121110708
  */
 public class PessoaController {
 	/**
@@ -19,7 +19,7 @@ public class PessoaController {
 	private ValidadorPessoa validador;
 
 	/**
-	 * Contrutor padrão do controller. Recebe uma PessoaService como parâmetro e
+	 * Construtor padrão do controller. Recebe uma PessoaService como parâmetro e
 	 * atribui ao respectivo atributo. E cria um validador a ser usado no
 	 * controller.
 	 * 
@@ -80,7 +80,7 @@ public class PessoaController {
 	}
 
 	/**
-	 * Remove pessoa a partir de cpf, com as novas habilidades, validando os
+	 * Remove pessoa a partir de cpf, validando os
 	 * parâmetros e direcionando para o Pessoa Service.
 	 * 
 	 * @param cpf String com cpf da pessoa a ser cadastrada.
@@ -91,7 +91,7 @@ public class PessoaController {
 	}
 
 	/**
-	 * Adiciona comentário para pessoa, a partir do cpf, do comentário o do cpf do
+	 * Adiciona comentário para pessoa, a partir do cpf, do comentário e do cpf do
 	 * autor do comentário, validando os parâmetros e direcionando para o Pessoa
 	 * Service.
 	 * 

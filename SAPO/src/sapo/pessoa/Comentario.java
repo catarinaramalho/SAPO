@@ -11,8 +11,17 @@ import java.util.Date;
  * @author Catarina Ramalho dos Santos - 121110708
  */
 public class Comentario {
+	/**
+	 * Pessoa autora do comentário.
+	 */
 	private Pessoa autor;
+	/**
+	 * Texto do comentário.
+	 */
 	private String comentario;
+	/**
+	 * Data de criação do comentário.
+	 */
 	private Date data;
 
 	/**
@@ -32,7 +41,7 @@ public class Comentario {
 	 * Representação Textual do comentário, que contém o comentário e o nome do
 	 * autor.
 	 * 
-	 * @return Data formatada.
+	 * @return Representação textual do comentário.
 	 */
 	@Override
 	public String toString() {
