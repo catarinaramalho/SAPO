@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ class PessoaRepository {
 		if (this.existeCpf(cpf)) {
 			this.pessoas.remove(cpf);
 		} else {
-			throw new IllegalArgumentException("O CPF informado não está cadastrado no sistema!");
+			throw new NoSuchElementException("O CPF informado não está cadastrado no sistema!");
 		}
 	}
 

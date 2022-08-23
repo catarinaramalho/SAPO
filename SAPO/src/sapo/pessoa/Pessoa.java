@@ -55,18 +55,6 @@ public class Pessoa implements Comparable<Pessoa> {
 
 	/**
 	 * Construtor de Pessoa. Constrói uma pessoa a partir de um cpf, nome e
-	 * habilidades.
-	 * 
-	 * @param cpf         String com o identificador único da pessoa.
-	 * @param nome        String com o nome da pessoa.
-	 * @param habilidades array contendo a lista de habilidades.
-	 */
-	public Pessoa(String cpf, String nome, String[] habilidades) {
-		this(cpf, nome, habilidades, null);
-	}
-
-	/**
-	 * Construtor de Pessoa. Constrói uma pessoa a partir de um cpf, nome e
 	 * habilidades e uma função, inicializa o nível com 0, o validador e o conjunto
 	 * de tarefas avaliadas.
 	 * 
@@ -85,55 +73,93 @@ public class Pessoa implements Comparable<Pessoa> {
 		this.tarefasAvaliadas = new HashSet<>();
 		this.validador = new ValidadorPessoa();
 	}
-
+	
+	/**
+	 * Construtor de Pessoa. Constrói uma pessoa a partir de um cpf, nome e
+	 * habilidades.
+	 * 
+	 * @param cpf         String com o identificador único da pessoa.
+	 * @param nome        String com o nome da pessoa.
+	 * @param habilidades array contendo a lista de habilidades.
+	 */
+	public Pessoa(String cpf, String nome, String[] habilidades) {
+		this(cpf, nome, habilidades, null);
+	}
+	/**
+	 * Retorna um cpf da pessoa.
+	 * @return String com o cpf da pessoa.
+	 */
 	public String getCpf() {
 		return this.cpf;
 	}
-
+	/**
+	 * Retorna o nome da pessoa.
+	 */
 	public String getNome() {
 		return this.nome;
 	}
-
+	/**
+	 * Altera o nome da pessoa.
+	 * @param nome String com novo nome da pessoa.
+	 */
 	public void setNome(String nome) {
 		this.validador.validacaoNome(nome);
 		this.nome = nome;
 	}
-
+	/**
+	 * Método que retorna as habilidades da pessoa.
+	 */
 	public String[] getHabilidades() {
 		return this.habilidades;
 	}
-
+	/**
+	 * Altera as habilidades de pessoa.
+	 * @param habilidades Array com novas habilidades de pessoa.
+	 */
 	public void setHabilidades(String[] habilidades) {
 		this.validador.validacaoHabilidades(habilidades);
 		this.habilidades = habilidades;
 	}
-
+	/**
+	 * Retorna lista de comentários.
+	 */
 	public List<Comentario> getComentarios() {
 		return this.comentarios;
 	}
-
-	public void setComentarios(List<Comentario> comentarios) {
-		this.comentarios = comentarios;
-	}
-
+	/**
+	 * Retorna a função da pesoa.
+	 */
 	public Funcao getFuncao() {
 		return this.funcao;
 	}
-
+	/**
+	 * Altera a função de uma pessoa.
+	 * @param novaFuncao String com a nova função de pessoa.
+	 */
 	public void setFuncao(Funcao novaFuncao) {
 		this.funcao = novaFuncao;
 	}
-
+	/**
+	 * Retorna o nível da pessoa.
+	 */
 	public int getNivel() {
 		return this.nivel;
 	}
 
-	// validar comentarios
+	/**
+	 * Adiciona um comentário na lista de comntários da pessoa, criando um comentário do tipo Comentario.
+	 * @param autor Pessoa que escreveu o comentário.
+	 * @param comentario String com o comentário.
+	 */
 	public void adicionarComentario(Pessoa autor, String comentario) {
-		this.validador.validacao(cpf, comentario);
+		this.validador.validacaoComentario(comentario);
 		this.comentarios.add(new Comentario(autor, comentario));
 	}
-
+	/**
+	 * Adiciona um comentário na lista de comntários da pessoa, criando um comentário do tipo Comentario.
+	 * @param autor Pessoa que escreveu o comentário.
+	 * @param comentario String com o comentário.
+	 */
 	private String listarHabilidades() {
 		Arrays.sort(this.habilidades);
 		String listagemHabilidades = "";
@@ -167,7 +193,7 @@ public class Pessoa implements Comparable<Pessoa> {
 
 	@Override
 	public String toString() {
-		String toString = this.nome + " - " + this.cpf;
+		String toString = this.nome + " – " + this.cpf;
 		if (funcao != null) {
 			toString += "\n" + this.funcao.toString();
 		}
