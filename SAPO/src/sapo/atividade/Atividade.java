@@ -108,10 +108,19 @@ public class Atividade {
 		return this.estado;
 	}
 
+	/**
+	 * Retorna o valor do atributo de estado da atividade.
+	 * 
+	 * @return String que representa a descrição.
+	 */
 	public String getDescricao() {
 		return this.descricao;
 	}
 
+	/**
+	 * 
+	 * @param novaDescricao
+	 */
 	public void setDescricao(String novaDescricao) {
 		this.descricao = novaDescricao;
 	}
@@ -231,11 +240,22 @@ public class Atividade {
 		return tarefasAssociadas;
 	}
 
+	/**
+	 * HashCode de um objeto Atividade. O hashCode é gerado a partir do id da atividade.
+	 * 
+	 * @return int com o hashCode de um objeto Atividade.
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
+	/**
+	 * Verifica se o objeto Atividade é igual a um outro objeto passado como parâmetro.
+	 * Uma atividade é identificada unicamente pelo sei id.
+	 * 
+	 * @return Retorna true caso o object seja igual, e false caso seja diferente.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
