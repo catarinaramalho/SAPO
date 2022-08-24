@@ -67,6 +67,9 @@ public class AtividadeService {
 	 */
 	public void encerrarAtividade(String atividadeId) {
 		Atividade atividade = this.recuperaAtividadeOuFalhe(atividadeId);
+		if (atividade.getEstado() == 1) {
+			throw new IllegalStateException("Não é possível encerrar uma atividade já encerrada");
+		}
 		if (atividade.tarefasPendentes().size() != 0) {
 			throw new IllegalStateException("Não é possível encerrar atividades com tarefas pendentes");
 		}
@@ -81,6 +84,9 @@ public class AtividadeService {
 	 */
 	public void desativarAtividade(String atividadeId) {
 		Atividade atividade = this.recuperaAtividadeOuFalhe(atividadeId);
+		if (atividade.getEstado() == 2) {
+			throw new IllegalStateException("Não é possível desativar uma atividade já desativada");
+		}
 		if (atividade.tarefasPendentes().size() != 0) {
 			throw new IllegalStateException("Não é possível desativar atividades com tarefas pendentes");
 		}

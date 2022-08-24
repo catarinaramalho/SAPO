@@ -104,15 +104,17 @@ public class AtividadeController {
 		this.validador.validacaoAlterarDescricaoAtividade(atividadeId, descricao);
 		this.atividadeService.alterarDescricaoAtividade(atividadeId, descricao);
 	}
+
 	/**
 	 * Altera o responsável de uma atividade no sistema, a partir do id dessa
 	 * atividade, validando esse id e passando ele para a operação adequada do
 	 * service de Atividade, passando o novo responsável.
 	 * 
 	 * @param atividadeId String que representa o id da atividade.
-	 * @param cpf   String com o cpf do novo responsável.
+	 * @param cpf         String com o cpf do novo responsável.
 	 */
 	public void alterarResponsavelAtividade(String atividadeId, String cpf) {
-		// TODO
+		this.validador.validacaoAlterarResponsavelAtividade(atividadeId, cpf);
+		this.atividadeService.alterarResponsavelAtividade(atividadeId, cpf);
 	}
 }

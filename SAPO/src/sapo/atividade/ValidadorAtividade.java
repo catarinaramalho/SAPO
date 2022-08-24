@@ -47,4 +47,9 @@ public class ValidadorAtividade extends ValidadorPadrao {
 		this.validacaoId(atividadeId);
 		this.validacaoDescricao(descricao);
 	}
+
+	public void validacaoAlterarResponsavelAtividade(String atividadeId, String cpf) {
+		this.validacaoId(atividadeId);
+		this.validacaoCpf(cpf);
+	}
 }

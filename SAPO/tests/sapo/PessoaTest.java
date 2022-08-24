@@ -258,7 +258,13 @@ class PessoaTest {
 	}
 
 	void testListarComentariosPessoa() {
-		fail("Not yet implemented");
-		// this.facade.listarComentariosPessoa(cpf);
+		this.facade.cadastrarPessoa("111.111.111-11", "Matheus Gaudencio do Rêgo", new String[] {});
+		this.facade.cadastrarPessoa("222.222.222-22", "Lívia Maria Rodrigues Sampaio Campos", new String[] {});
+		this.facade.adicionarComentarioPessoa("111.111.111-11", "É uma boa pessoa, só não tem muito juízo",
+				"222.222.222-22");
+		assertEquals(
+				"Matheus Gaudencio do Rêgo – 111.111.111-11\n" + "Comentários:\n"
+						+ "-- É uma boa pessoa, só não tem muito juízo (Lívia Maria Rodrigues Sampaio Campos)",
+				this.facade.listarComentariosPessoa("111.111.111-11"));
 	}
 }
