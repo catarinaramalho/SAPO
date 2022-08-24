@@ -1,6 +1,6 @@
 package sapo.busca;
 
-public abstract class BuscaAbstract implements BuscaInterface {
+public abstract class BuscaAbstract {
 	private String[] criterio;
 	
 	public BuscaAbstract(String criterioBusca) {
