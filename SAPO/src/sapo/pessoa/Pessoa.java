@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.Objects;
 
 import sapo.funcao.Funcao;
+import sapo.funcao.Professor;
 import sapo.tarefa.Tarefa;
 
 /**
@@ -168,6 +169,20 @@ public class Pessoa implements Comparable<Pessoa> {
 		return this.nivel;
 	}
 
+	public Set<Tarefa> getTarefasAvaliadas() {
+		return this.tarefasAvaliadas;
+	}
+	
+	public String[] getDisciplinas() {
+		if (this.funcao == null) {
+			throw new NullPointerException("Pessoa não é do tipo professor");
+		} else if (this.funcao.getClass() != Professor.class) {
+			throw new ClassCastException("Pessoa não é do tipo professor");
+		}
+		Professor professor = (Professor) this.funcao;
+		return professor.getDisciplinas();
+	}
+
 	/**
 	 * Adiciona um comentário na lista de comntários da pessoa, criando um
 	 * comentário do tipo Comentario.
@@ -228,9 +243,9 @@ public class Pessoa implements Comparable<Pessoa> {
 	 * 
 	 * @param nivel Inteiro contendo o novo nível da pessoa.
 	 */
-	private void armazenaNivel(int nivel) {
+	public void armazenaNivel(Set<Tarefa> tarefas, int nivel) {
+		this.tarefasAvaliadas.addAll(tarefas);
 		this.nivel = nivel;
-		// TODO
 	}
 
 	/**

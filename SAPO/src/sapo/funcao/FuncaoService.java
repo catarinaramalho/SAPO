@@ -1,5 +1,6 @@
 package sapo.funcao;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,16 +29,21 @@ public class FuncaoService {
 
 	public void definirFuncaoProfessor(String cpf, String siape, String[] disciplinas) {
 		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
-		if (pessoa.getFuncao().getClass() == Professor.class) {
+		if (pessoa.getFuncao() != null && pessoa.getFuncao().getClass() == Professor.class) {
 			throw new IllegalStateException("A função da pessoa já é de Professor");
 		}
+		pessoa.armazenaNivel(this.recuperaTarefas(cpf), this.pegarNivel(cpf));
+		pessoa.setFuncao(new Professor(siape, disciplinas));
+		System.out.println(pessoa.getFuncao());
 	}
 
 	public void definirFuncaoAluno(String cpf, String matr, int periodo) {
 		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
-		if (pessoa.getFuncao().getClass() == Aluno.class) {
+		if (pessoa.getFuncao() != null && pessoa.getFuncao().getClass() == Aluno.class) {
 			throw new IllegalStateException("A função da pessoa já é de Aluno");
 		}
+		pessoa.armazenaNivel(this.recuperaTarefas(cpf), this.pegarNivel(cpf));
+		pessoa.setFuncao(new Aluno(matr, periodo));
 	}
 
 	public void removerFuncao(String cpf) {
@@ -45,18 +51,21 @@ public class FuncaoService {
 		if (pessoa.getFuncao() == null) {
 			throw new IllegalStateException("A pessoa já não possui função");
 		}
+		pessoa.armazenaNivel(this.recuperaTarefas(cpf), this.pegarNivel(cpf));
+		pessoa.setFuncao(null);
 	}
 
 	public int pegarNivel(String cpf) {
 		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
 		int nivel = 0;
-		if (pessoa.getFuncao() == null || pessoa.getFuncao().getClass() == Aluno.class) {
-			nivel += (this.tarefasAndamento(cpf) / 2) + this.tarefasConcluidas(cpf);
-		}
-		if (pessoa.getFuncao().getClass() == Aluno.class) {
-			nivel += 0; // TODO
+		if (pessoa.getFuncao() == null) {
+			nivel += (this.tarefasAndamento(cpf).size() / 2) + this.tarefasConcluidas(cpf).size();
+		} else if (pessoa.getFuncao().getClass() == Aluno.class) {
+			nivel += (this.tarefasAndamento(cpf).size() / 2)
+					+ (this.tarefasConcluidas(cpf).size() - this.tarefasHabilidades(cpf).size())
+					+ Math.ceil(this.tarefasHabilidades(cpf).size() * 1.5);
 		} else if (pessoa.getFuncao().getClass() == Professor.class) {
-			nivel += this.tarefasAndamento(cpf) / 4;
+			nivel += this.tarefasAndamento(cpf).size() / 4 + this.tarefasHabilidadesDiciplinas(cpf).size();
 		}
 		return nivel + pessoa.getNivel();
 	}
@@ -66,20 +75,73 @@ public class FuncaoService {
 	}
 
 	private Set<Tarefa> recuperaTarefas(String cpf) {
-		return this.tarefaService.tarefasAssociadasPessoa(cpf);
+		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
+		Set<Tarefa> tarefasNaoAvaliadas = this.tarefaService.tarefasAssociadasPessoa(cpf);
+		tarefasNaoAvaliadas.removeAll(pessoa.getTarefasAvaliadas());
+		return tarefasNaoAvaliadas;
 	}
 
-	private int tarefasAndamento(String cpf) {
+	private Set<Tarefa> tarefasAndamento(String cpf) {
 		Set<Tarefa> tarefasAndamento = new HashSet<>();
 		for (Tarefa tarefa : this.recuperaTarefas(cpf)) {
 			if (tarefa.getEstado() == false) {
 				tarefasAndamento.add(tarefa);
 			}
 		}
-		return tarefasAndamento.size();
+		return tarefasAndamento;
 	}
 
-	private int tarefasConcluidas(String cpf) {
-		return this.recuperaTarefas(cpf).size() - this.tarefasAndamento(cpf);
+	private Set<Tarefa> tarefasConcluidas(String cpf) {
+		Set<Tarefa> tarefasConcluidas = new HashSet<>();
+		for (Tarefa tarefa : this.recuperaTarefas(cpf)) {
+			if (tarefa.getEstado() == true) {
+				tarefasConcluidas.add(tarefa);
+			}
+		}
+		return tarefasConcluidas;
+	}
+
+	private Set<Tarefa> tarefasHabilidades(String cpf) {
+		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
+		Set<Tarefa> tarefasHabilidades = new HashSet<>();
+		for (Tarefa tarefa : this.tarefasConcluidas(cpf)) {
+			for (String habilidadeTarefa : tarefa.getHabilidades()) {
+				boolean bate = false;
+				for (String habilidadePessoa : pessoa.getHabilidades()) {
+					if (habilidadeTarefa.equals(habilidadePessoa)) {
+						bate = true;
+						break;
+					}
+				}
+				if (bate == true) {
+					tarefasHabilidades.add(tarefa);
+				}
+				break;
+			}
+		}
+		return tarefasHabilidades;
+	}
+
+	private Set<Tarefa> tarefasHabilidadesDiciplinas(String cpf) {
+		Pessoa pessoa = this.pessoaService.recuperarPessoaOuFalhe(cpf);
+		Set<Tarefa> tarefasHabilidades = new HashSet<>();
+		Set<String> habilidadesDisciplina = new HashSet<>(Arrays.asList(pessoa.getHabilidades()));
+		habilidadesDisciplina.addAll(Arrays.asList(pessoa.getDisciplinas()));
+		for (Tarefa tarefa : this.tarefasConcluidas(cpf)) {
+			for (String habilidadeTarefa : tarefa.getHabilidades()) {
+				boolean bate = false;
+				for (String habilidadeDisciplina : habilidadesDisciplina) {
+					if (habilidadeTarefa.equals(habilidadeDisciplina)) {
+						bate = true;
+						break;
+					}
+				}
+				if (bate == true) {
+					tarefasHabilidades.add(tarefa);
+				}
+				break;
+			}
+		}
+		return tarefasHabilidades;
 	}
 }

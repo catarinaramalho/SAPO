@@ -33,6 +33,10 @@ public class Professor implements Funcao {
 		this.siape = siape;
 		this.disciplinas = disciplinas;
 	}
+	
+	public String[] getDisciplinas() {
+		return this.disciplinas;
+	}
 
 	@Override
 	public String toString() {
