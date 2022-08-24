@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import sapo.atividade.AtividadeService;
 import sapo.tarefa.TarefaService;
 
 public class BuscaTarefa extends BuscaAbstract {

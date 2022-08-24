@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import sapo.atividade.AtividadeService;
-import sapo.pessoa.Pessoa;
 
 public class BuscaAtividade extends BuscaAbstract {
 	private Set<String> resultado;
