@@ -199,4 +199,20 @@ public class Facade {
 	}
 
 	// métodos de tarefas gerenciais
+	
+	public String cadastrarTarefaGerencial(String atividadeId, String nome, String[] habilidades,String[] idTarefas) {
+		return this.tarefaController.cadastrarTarefaGerencial(atividadeId, nome, habilidades, idTarefas);
+	}
+
+	public void adicionarNaTarefaGerencial(String idTarefaGerencial, String idTarefa) {
+		this.tarefaController.adicionarNaTarefaGerencial(idTarefaGerencial, idTarefa);
+	}
+
+	public void removerDaTarefaGerencial(String idTarefaGerencial, String idTarefa) {
+		this.tarefaController.removerDaTarefaGerencial(idTarefaGerencial, idTarefa);
+	}
+
+	public int contarTodasTarefasNaTarefaGerencial(String idTarefaGerencial) {
+		return this.tarefaController.contarTodasTarefasNaTarefaGerencial(idTarefaGerencial);
+	}
 }

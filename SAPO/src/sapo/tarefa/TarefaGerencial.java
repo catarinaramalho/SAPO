@@ -115,7 +115,7 @@ public class TarefaGerencial extends Tarefa {
 
 	private String listarTarefas() {
 		String listagem = "";
-		for (int i = this.tarefas.size(); i > -1; i--) {
+		for (int i = this.tarefas.size() - 1; i > -1; i--) {
 			listagem += this.tarefas.get(i).getNome() + " - " + this.tarefas.get(i).getCodigo() + "\n";
 			;
 		}
