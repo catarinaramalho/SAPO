@@ -52,9 +52,6 @@ public class ValidadorFuncao extends ValidadorPadrao {
 
 	private void validacaoDisciplinas(String[] disciplinas) {
 		Objects.requireNonNull(disciplinas, "O array de disciplinas não pode ser nulo");
-		if (disciplinas.length == 0) { // Pode não ter disciplinas?
-			throw new IllegalArgumentException("O array de disciplinas não pode ser vazio");
-		}
 		for (String disciplina : disciplinas) {
 			Objects.requireNonNull(disciplina, "Não podem haver disciplinas nulas");
 			if (disciplina.isBlank()) {
