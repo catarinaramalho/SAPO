@@ -15,7 +15,7 @@ public class HistoricoBuscas {
 	}
 
 	public String[] buscasMaisRecentes(int nBuscas) {
-		return this.buscas.get(this.buscas.size() - nBuscas);
+		return this.buscas.get(this.buscas.size() - 1);
 	}
 
 	public String[] exibirHistóricoBusca(int indexBusca) {

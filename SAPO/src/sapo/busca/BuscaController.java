@@ -45,7 +45,6 @@ public class BuscaController {
 	}
 	
 	public String[] exibirHistoricoBusca(int indexBusca) {
-		this.validadorBusca.validaNBuscas(indexBusca);
 		return this.buscaService.exibirHistoricoBusca(indexBusca);
 	}
 }

@@ -18,9 +18,10 @@ public class BuscaService {
 	TarefaService tarefaService;
 	HistoricoBuscas historicoBuscas;
 
-	public BuscaService(PessoaService pessoaService, AtividadeService atividadeService) {
+	public BuscaService(PessoaService pessoaService, AtividadeService atividadeService, TarefaService tarefaService) {
 		this.pessoaService = pessoaService;
 		this.atividadeService = atividadeService;
+		this.tarefaService = tarefaService;
 		this.historicoBuscas = new HistoricoBuscas();
 	}
 
@@ -34,7 +35,7 @@ public class BuscaService {
 		for (Pessoa pessoa : resultadosBusca) {
 			listaResultados.add(pessoa);
 		}
-		
+
 		String[] arrayPessoas = new String[listaResultados.size()];
 
 		for (int i = 0; i < arrayPessoas.length; i++) {
@@ -42,7 +43,7 @@ public class BuscaService {
 		}
 
 		Arrays.sort(arrayPessoas);
-		
+
 		return arrayPessoas;
 	}
 
@@ -76,7 +77,7 @@ public class BuscaService {
 		for (String representacao : resultadosBusca) {
 			listaResultados.add(representacao);
 		}
-		
+
 		String[] arrayTarefas = new String[listaResultados.size()];
 
 		for (int i = 0; i < arrayTarefas.length; i++) {
@@ -96,7 +97,7 @@ public class BuscaService {
 		for (String representacao : resultadosBusca) {
 			listaResultados.add(representacao);
 		}
-		
+
 		String[] arrayTarefas = new String[listaResultados.size()];
 
 		for (int i = 0; i < arrayTarefas.length; i++) {

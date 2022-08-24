@@ -284,7 +284,7 @@ public class Atividade {
 		Set<String> resultadosBusca = new HashSet<>();
 		for (String criterio : criterioBusca) {
 			for (String chave : this.tarefas.keySet()) {
-				if (this.tarefas.get(chave).getNome().toUpperCase().equals(criterio.toUpperCase())) {
+				if (this.tarefas.get(chave).getNome().toUpperCase().contains(criterio.toUpperCase())) {
 					resultadosBusca.add(this.tarefas.get(chave).toString());
 					continue;
 				}

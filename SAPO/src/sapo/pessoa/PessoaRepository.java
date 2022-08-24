@@ -141,13 +141,12 @@ class PessoaRepository {
 				if (chave.toUpperCase().equals(criterio.toUpperCase())) {
 					possui = true;
 				}
-				if (this.pessoas.get(chave).getNome().toUpperCase().equals(criterio.toUpperCase())) {
+				if (this.pessoas.get(chave).getNome().toUpperCase().contains(criterio.toUpperCase())) {
 					possui = true;
 				}
 				if (this.pessoas.get(chave).possuiHabilidade(criterio.toUpperCase())) {
 					possui = true;
 				}
-
 				if (!possui) {
 					naoCorresponde = true;
 					break;

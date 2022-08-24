@@ -71,7 +71,7 @@ class AtividadeRepository {
 
 		for (String criterio : criterioBusca) {
 			for (String chave : this.atividades.keySet()) {
-				if (this.atividades.get(chave).getNome().toUpperCase().equals(criterio.toUpperCase())) {
+				if (this.atividades.get(chave).getNome().toUpperCase().contains(criterio.toUpperCase())) {
 					resultadosBusca.add(this.atividades.get(chave).toString());
 					continue;
 				}
