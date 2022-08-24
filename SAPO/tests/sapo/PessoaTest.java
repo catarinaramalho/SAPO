@@ -26,7 +26,7 @@ class PessoaTest {
 	void testCadastrarPessoa() {
 		this.facade.cadastrarPessoa("111.111.111-11", "Matheus Gaudencio do Rêgo",
 				new String[] { "Desenvolvimento web", "Professor", "Programador" });
-		assertEquals("Matheus Gaudencio do Rêgo - 111.111.111-11\n- Desenvolvimento web\n- Professor\n- Programador",
+		assertEquals("Matheus Gaudencio do Rêgo – 111.111.111-11\n- Desenvolvimento web\n- Professor\n- Programador",
 				this.facade.exibirPessoa("111.111.111-11"));
 	}
 
@@ -89,7 +89,7 @@ class PessoaTest {
 	void testExibirPessoaHabilidadesOrdenadas() {
 		this.facade.cadastrarPessoa("111.111.111-11", "Matheus Gaudencio do Rêgo",
 				new String[] { "Desenvolvimento web", "Professor", "Programador" });
-		assertEquals("Matheus Gaudencio do Rêgo - 111.111.111-11\n- Desenvolvimento web\n- Professor\n- Programador",
+		assertEquals("Matheus Gaudencio do Rêgo – 111.111.111-11\n- Desenvolvimento web\n- Professor\n- Programador",
 				this.facade.exibirPessoa("111.111.111-11"));
 	}
 
@@ -97,14 +97,14 @@ class PessoaTest {
 	void testExibirPessoaHabilidadesDesordenadas() {
 		this.facade.cadastrarPessoa("111.111.111-11", "Matheus Gaudencio do Rêgo",
 				new String[] { "Professor", "Programador", "Desenvolvimento web" });
-		assertEquals("Matheus Gaudencio do Rêgo - 111.111.111-11\n- Desenvolvimento web\n- Professor\n- Programador",
+		assertEquals("Matheus Gaudencio do Rêgo – 111.111.111-11\n- Desenvolvimento web\n- Professor\n- Programador",
 				this.facade.exibirPessoa("111.111.111-11"));
 	}
 
 	@Test
 	void testExibirPessoaSemHabilidades() {
 		this.facade.cadastrarPessoa("111.111.111-11", "Matheus Gaudencio do Rêgo", new String[] {});
-		assertEquals("Matheus Gaudencio do Rêgo - 111.111.111-11", this.facade.exibirPessoa("111.111.111-11"));
+		assertEquals("Matheus Gaudencio do Rêgo – 111.111.111-11", this.facade.exibirPessoa("111.111.111-11"));
 	}
 
 	@Test
@@ -137,9 +137,9 @@ class PessoaTest {
 	@Test
 	void testAlterarNomePessoa() {
 		this.facade.cadastrarPessoa("111.111.111-11", "Matheus Gaudencio do Rêgo", new String[] {});
-		assertEquals("Matheus Gaudencio do Rêgo - 111.111.111-11", this.facade.exibirPessoa("111.111.111-11"));
+		assertEquals("Matheus Gaudencio do Rêgo – 111.111.111-11", this.facade.exibirPessoa("111.111.111-11"));
 		this.facade.alterarNomePessoa("111.111.111-11", "Lívia Maria Rodrigues Sampaio Campos");
-		assertEquals("Lívia Maria Rodrigues Sampaio Campos - 111.111.111-11",
+		assertEquals("Lívia Maria Rodrigues Sampaio Campos – 111.111.111-11",
 				this.facade.exibirPessoa("111.111.111-11"));
 	}
 
@@ -193,7 +193,7 @@ class PessoaTest {
 	@Test
 	void testAlterarHabilidadesPessoa() {
 		this.facade.cadastrarPessoa("111.111.111-11", "Matheus Gaudencio do Rêgo", new String[] {});
-		assertEquals("Matheus Gaudencio do Rêgo - 111.111.111-11", this.facade.exibirPessoa("111.111.111-11"));
+		assertEquals("Matheus Gaudencio do Rêgo – 111.111.111-11", this.facade.exibirPessoa("111.111.111-11"));
 		this.facade.alterarHabilidadesPessoa("111.111.111-11", new String[] {});
 	}
 
@@ -220,7 +220,7 @@ class PessoaTest {
 	@Test
 	void testRemoverPessoaCpfNulo() {
 		try {
-			this.facade.removerPessoa("111.111.111-11");
+			this.facade.removerPessoa(null);
 		} catch (NullPointerException npe) {
 
 		}
@@ -229,7 +229,7 @@ class PessoaTest {
 	@Test
 	void testRemoverPessoaCpfVazio() {
 		try {
-			this.facade.removerPessoa("111.111.111-11");
+			this.facade.removerPessoa("");
 		} catch (IllegalArgumentException npe) {
 
 		}

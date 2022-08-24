@@ -34,7 +34,6 @@ public class FuncaoService {
 		}
 		pessoa.armazenaNivel(this.recuperaTarefas(cpf), this.pegarNivel(cpf));
 		pessoa.setFuncao(new Professor(siape, disciplinas));
-		System.out.println(pessoa.getFuncao());
 	}
 
 	public void definirFuncaoAluno(String cpf, String matr, int periodo) {
