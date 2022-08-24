@@ -25,13 +25,30 @@ class AtividadeRepository {
 	 * String id da atividade coo chave.
 	 */
 	private Map<String, Atividade> atividades;
+	/**
+	 * Validador utilizado para validar os parâmetros.
+	 */
 	private ValidadorAtividade validador;
 
+	/**
+	 * Construtor padrão do repositório, incializando o mapa de atividades e o
+	 * validador.
+	 */
 	AtividadeRepository() {
 		this.atividades = new TreeMap<>();
 		this.validador = new ValidadorAtividade();
 	}
 
+	/**
+	 * Cadastra uma atividade no mapa de atividades. Cadastra a partir do nome e
+	 * desrição da atividade e, também, pela Pessoa a ser responsável pela
+	 * atividade. Retorna uma String que representa o id da atividade.
+	 * 
+	 * @param nome      String que representa o nome da atividade.
+	 * @param descricao String que representa a descrição da atividade.
+	 * @param Pessoa    Pessoa que representa a responsável pela atividade.
+	 * @return String com o id dessa atividade no sistema.
+	 */
 	String cadastrarAtividade(String nome, String descricao, Pessoa responsavel) {
 		String id = gerarId(nome);
 		this.atividades.put(id, new Atividade(id, nome, descricao, responsavel));
@@ -59,6 +76,13 @@ class AtividadeRepository {
 		return id.substring(0, 3) + "-" + (this.atividades.size());
 	}
 
+	/**
+	 * Recupera atividade a partir do id, validando o parâmetro recebido.
+	 * 
+	 * @param atividadeId String que representa o id da atividade.
+	 * @return Um optional de Atividade ou optional vazio, caso a atividade não
+	 *         exista no repositório.
+	 */
 	Optional<Atividade> recuperarAtividade(String atividadeId) {
 		Atividade atividade = null;
 		this.validador.validacaoId(atividadeId);
@@ -66,6 +90,13 @@ class AtividadeRepository {
 		return Optional.ofNullable(atividade);
 	}
 
+	/**
+	 * Busca um conjunto de atividades a partir dos critérios de busca.
+	 * 
+	 * @param criterioBusca Um array contendo os critérios de busca.
+	 * @return Um conjunto das representações textuais das atividades que atendem a
+	 *         busca.
+	 */
 	public Set<String> busca(String[] criterioBusca) {
 		Set<String> resultadosBusca = new HashSet<>();
 
@@ -96,6 +127,11 @@ class AtividadeRepository {
 		return resultadosBusca;
 	}
 
+	/**
+	 * Recupera uma lista de Atividades.
+	 * 
+	 * @return Lista de Atividades.
+	 */
 	public List<Atividade> recuperaAtividades() {
 		Set<Atividade> atividades = new HashSet<>();
 		for (String id : this.atividades.keySet()) {
@@ -110,6 +146,12 @@ class AtividadeRepository {
 		return listaAtividades;
 	}
 
+	/**
+	 * Recupera uma um conjunto de tarefas associadas a uma pessoa, mediante um cpf.
+	 * 
+	 * @param cpf String que contém o cpf da pessoa associada as tarefas.
+	 * @return Conjunto de tarefas associadas a pessoa.
+	 */
 	public Set<Tarefa> tarefasAssociadasPessoa(String cpf) {
 		Set<Tarefa> tarefasAssociadas = new HashSet<>();
 		for (Map.Entry<String, Atividade> atividade : this.atividades.entrySet()) {
